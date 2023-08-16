@@ -1,0 +1,20 @@
+package com.shopx.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "review")
+public class Review extends BaseEntity{
+
+		private String reviewText;
+		private int rating;
+		
+		@ManyToOne
+		@JoinColumn(name = "customer_id")
+		private Customer customer;
+		
+		
+}

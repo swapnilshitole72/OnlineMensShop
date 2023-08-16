@@ -1,0 +1,21 @@
+package com.shopx.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Table(name = "products")
+@Getter
+@Setter
+public class Product extends BaseEntity{
+
+	private String productName;
+	private String description;
+	private double price;
+	private CategoryType category;
+	private int quantity;
+	private String image;
+}

@@ -1,0 +1,9 @@
+INDEX VERSION 1.131
+/home/user/Desktop/Practice/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1534049440.index
+/spring_mvc_ecommerce/src/main/java
+/home/user/Desktop/Practice/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/535251148.index
+/spring_mvc_ecommerce/src/main/java
+/home/user/Desktop/Practice/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/987167534.index
+/spring_mvc_ecommerce/src/main/java
+/home/user/Desktop/Practice/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3478522223.index
+/spring_mvc_ecommerce/src/main/java

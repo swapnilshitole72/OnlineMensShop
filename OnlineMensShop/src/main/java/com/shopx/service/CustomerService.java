@@ -2,16 +2,21 @@ package com.shopx.service;
 
 import java.util.List;
 
+import com.shopx.dto.LoginDTO;
 import com.shopx.dto.SignUpDTO;
-import com.shopx.entities.Customer;
+import com.shopx.entities.User;
 
 
 
 public interface CustomerService {
 
-	public Customer newCustomerRegistration(SignUpDTO newCustomer);
+	public User newCustomerRegistration(SignUpDTO newCustomer);
 	
-	public List<Customer> getAllCustomerDetails();
+	public List<User> getAllCustomerDetails();
 	
-	public Customer getCustomerById(Long id);
+	public User getCustomerById(Long id);
+	
+	public User loginValidationForm(LoginDTO login);
+	
+//	public Customer editCustomerProfil(SignUpDTO editCustomer);
 }

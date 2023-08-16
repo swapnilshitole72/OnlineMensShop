@@ -29,5 +29,5 @@ public class Order extends BaseEntity{
 	
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
-	private Customer customer;
+	private User customer;
 }

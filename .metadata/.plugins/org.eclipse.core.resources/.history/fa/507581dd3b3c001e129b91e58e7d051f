@@ -1,0 +1,13 @@
+package com.shopx.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "category")
+public class Category extends BaseEntity{
+
+	@Column(length = 50)
+	private String categoryName;
+}
