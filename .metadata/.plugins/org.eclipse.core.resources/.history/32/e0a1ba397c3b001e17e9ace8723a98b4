@@ -1,0 +1,13 @@
+package com.shopx.entities;
+
+import javax.persistence.*;
+
+@Entity
+
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+public class Customer {
+
+}

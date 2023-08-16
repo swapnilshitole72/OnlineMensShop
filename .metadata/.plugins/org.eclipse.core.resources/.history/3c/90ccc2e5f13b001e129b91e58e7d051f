@@ -1,0 +1,13 @@
+package com.shopx.service;
+
+import com.shopx.dto.SignUpDTO;
+import com.shopx.entities.Customer;
+
+import antlr.collections.List;
+
+public interface CustomerService {
+
+	public Customer newCustomerRegistration(SignUpDTO newCustomer);
+	
+	public List<Customer> getAllCustomerDetails();
+}

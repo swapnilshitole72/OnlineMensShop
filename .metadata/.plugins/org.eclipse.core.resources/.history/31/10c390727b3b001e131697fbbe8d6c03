@@ -1,0 +1,5 @@
+package com.shopx.entities;
+
+public class Customer {
+
+}

@@ -1,0 +1,37 @@
+package com.shopx.dto;
+
+import com.shopx.entities.RoleType;
+
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+
+public class SignUpDTO {
+	
+	
+	private String firstName;
+	
+	public SignUpDTO(RoleType role) {
+		super();
+		this.role =role.ROLE_CUSTOMER;
+	}
+
+	private String lastName;
+	
+	private String email;
+	
+	private String password;	
+	
+	private String address;
+	
+	private String mobile;
+	
+	private RoleType role;
+	
+
+}

@@ -1,0 +1,13 @@
+package com.shopx.service;
+
+import com.shopx.dto.SignUpDTO;
+
+public class CustomerServiceImpl implements CustomerService {
+
+	@Override
+	public String newCustomerRegistration(SignUpDTO newCustomer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

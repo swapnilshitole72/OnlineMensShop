@@ -1,0 +1,30 @@
+package com.shopx.service;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.shopx.dao.CustomerDao;
+import com.shopx.dto.SignUpDTO;
+import com.shopx.entities.Customer;
+import com.shopx.entities.RoleType;
+
+public class CustomerServiceImpl implements CustomerService {
+	
+	@Autowired
+	private CustomerDao dao;
+	
+	@Autowired
+	private ModelMapper mapper;
+	
+	@Override
+	public Customer newCustomerRegistration(SignUpDTO newCustomer) {
+		
+		Customer cust=new Customer();
+		cust.setRole(RoleType.ROLE_CUSTOMER);
+		mapper.map(newCustomer, cust);
+		
+		Customer customer = dao.save();
+		return customer;
+	}
+
+}
