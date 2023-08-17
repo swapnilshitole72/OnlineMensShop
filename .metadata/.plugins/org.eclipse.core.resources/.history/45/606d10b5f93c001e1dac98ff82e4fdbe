@@ -1,0 +1,22 @@
+package com.shopx.dto;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import org.hibernate.validator.constraints.Range;
+
+import com.shopx.entities.Product;
+import com.shopx.entities.User;
+
+public class ReviewDTO {
+
+	
+	private String reviewText;
+	
+	private int rating;
+	
+	private Long customer;
+
+	private Long product;
+}

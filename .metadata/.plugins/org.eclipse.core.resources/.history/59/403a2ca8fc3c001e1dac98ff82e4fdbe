@@ -1,0 +1,38 @@
+package com.shopx.service;
+
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.shopx.dao.ReviewDao;
+import com.shopx.dto.ReviewDTO;
+import com.shopx.entities.Product;
+import com.shopx.entities.Review;
+
+@Service
+@Transactional
+public class ReviewServiceImpl implements ReviewService {
+
+	@Autowired
+	private ReviewDao dao;
+	
+	@Autowired
+	private ModelMapper mapper;
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Override
+	public Review addNewReview(ReviewDTO review) {
+		
+		Review re = mapper.map(review, Review.class);
+		Optional<Product> product = productService.getProductById(review.getProduct_id());
+		re.setProduct(product);
+		return dao.save(review);
+	}
+
+}

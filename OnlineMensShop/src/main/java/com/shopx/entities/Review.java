@@ -24,7 +24,7 @@ public class Review extends BaseEntity{
 		@Column(length = 200)
 		private String reviewText;
 		
-		@Range(min = 1,max = 5)
+		@Range(min = 1, max = 5,message = "Rating is not in range")
 		private int rating;
 		
 		@ManyToOne

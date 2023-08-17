@@ -1,0 +1,8 @@
+package com.shopx.service;
+
+import com.shopx.entities.Review;
+
+public interface ReviewService {
+
+	public Review addNewReview(Review review);
+}

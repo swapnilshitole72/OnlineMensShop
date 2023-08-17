@@ -1,0 +1,12 @@
+package com.shopx.dto;
+
+public class ReviewDTO {
+	
+	private String reviewText;
+	
+	private int rating;
+	
+	private Long customer_id;
+
+	private Long product_id;
+}

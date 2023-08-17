@@ -1,0 +1,11 @@
+package com.shopx.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.shopx.dto.ReviewDTO;
+import com.shopx.entities.Review;
+
+public interface ReviewDao extends JpaRepository<Review, Long> {
+
+	public Review saveReview(ReviewDTO dto);
+}
