@@ -1,0 +1,10 @@
+package com.shopx.service;
+
+import com.shopx.entities.Product;
+
+public interface ProductService {
+	
+	
+	public Product addNewProduct(ProductRequestDTO product);
+	
+}

@@ -1,0 +1,31 @@
+package com.shopx.service;
+
+import javax.transaction.Transactional;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.shopx.dao.ProductDao;
+import com.shopx.dto.ProductRequestDTO;
+import com.shopx.entities.Product;
+
+@Service
+@Transactional
+public class ProductServiceImpl implements ProductService {
+
+	@Autowired
+	private ProductDao productDao;
+	
+	@Autowired
+	private ModelMapper mapper;
+	
+	@Override
+	public Product addNewProduct(ProductRequestDTO product) {
+		
+		Product p = mapper.map(product, Product.class);
+		productDao.save(p);
+		return 
+	}
+
+}

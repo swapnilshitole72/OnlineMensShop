@@ -1,0 +1,17 @@
+package com.shopx.dto;
+
+import com.shopx.entities.CategoryType;
+
+public class ProductResponseDTO {
+
+	
+	private String productName;
+	
+	private String description;
+	
+	private double price;
+	
+	private CategoryType category;
+
+	private int quantity;
+}

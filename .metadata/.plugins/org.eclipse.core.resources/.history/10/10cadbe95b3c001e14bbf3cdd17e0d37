@@ -1,0 +1,24 @@
+package com.shopx.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.shopx.entities.Product;
+import com.shopx.service.ProductService;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+@RestController
+public class ProductController {
+	
+	@Autowired
+	private ProductService productService;
+	
+	@PostMapping(consumes = "multipart/form-data")
+	public ResponseEntity<?> addNewProduct(@RequestBody Product product)
+	{
+		
+	}
+}

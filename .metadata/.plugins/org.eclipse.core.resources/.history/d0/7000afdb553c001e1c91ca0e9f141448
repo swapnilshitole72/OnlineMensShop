@@ -1,0 +1,6 @@
+package com.shopx.service;
+
+public interface ProductService {
+	
+
+}

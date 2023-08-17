@@ -1,0 +1,5 @@
+package com.shopx.dao;
+
+public interface ProductDao {
+
+}

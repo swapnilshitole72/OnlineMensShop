@@ -1,0 +1,12 @@
+package com.shopx.service;
+
+import com.shopx.dto.ProductRequestDTO;
+import com.shopx.entities.Product;
+
+public interface ProductService {
+	
+	
+	public Product addNewProduct(ProductRequestDTO product);
+	
+	public List<Product> getAllProducts();
+}
