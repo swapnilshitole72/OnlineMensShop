@@ -12,6 +12,7 @@ import lombok.ToString;
 @ToString
 public class ProductResponseDTO {
 
+	private Long id;
 	
 	private String productName;
 	
@@ -24,4 +25,6 @@ public class ProductResponseDTO {
 	private int quantity;
 	
 	private byte[] image;
+	
+	
 }

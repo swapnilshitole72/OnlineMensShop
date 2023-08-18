@@ -1,7 +1,6 @@
 package com.shopx.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -47,5 +46,17 @@ public class ReviewServiceImpl implements ReviewService {
 		Product product = productService.getProductById(id).orElseThrow();
 		return dao.findByProduct(product);
 	}
+
+	@Override
+	public Double getAvgProductRatingById(Long id) {
+		Product product = productService.getProductById(id).orElseThrow();
+		
+		return dao.getAvgRatingOfProductById(product.getId());
+	}
+
+//	@Override
+//	public List<AvgRatingResponseDTO> getAvgProductRatingOfAllProducts() {
+//		return dao.getAvgRatingProductOfAllProducts();
+//	}
 
 }

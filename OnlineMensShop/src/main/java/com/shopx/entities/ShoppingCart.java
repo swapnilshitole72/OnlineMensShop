@@ -26,7 +26,7 @@ public class ShoppingCart extends BaseEntity{
 	
 	private double totalCartPrice;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name = "customer_id") // FK constraint
 	private User cartOwner;
 

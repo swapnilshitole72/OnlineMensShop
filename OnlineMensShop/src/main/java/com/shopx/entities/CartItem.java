@@ -1,5 +1,6 @@
 package com.shopx.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,11 +24,11 @@ public class CartItem extends BaseEntity{
 	
 	private double totalPrice;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_id")
 	private ShoppingCart myCart;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name = "product_id")
 	private Product product;
 }

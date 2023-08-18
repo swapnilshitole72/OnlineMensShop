@@ -2,6 +2,8 @@ package com.shopx.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.shopx.custom_exception.ResourceNotFoundException;
 import com.shopx.dao.ProductDao;
+import com.shopx.dto.ProductResponseDTO;
 import com.shopx.entities.Product;
 import com.shopx.entities.User;
 
@@ -66,20 +69,35 @@ public class ImageHandlingServiceImpl implements ImageHandlingService {
 	@Override
 	public byte[] downloadImage(Long productId) throws IOException {
 		// get product from DB
-		
 		Product product = productDao.
 				findById(productId).orElseThrow(() -> new ResourceNotFoundException("Invalid product id !!!!!"));
-		
-		
 		// => product exists !
 		// chk if image path exists
 		if (product.getImagePath() != null) {
-			// img exists , read file contents in to byte[]
-			
+			// img exists , read file contents in to byte[]	
 			return FileUtils.readFileToByteArray(new File(product.getImagePath()));
-			
 		}
 		throw new ResourceNotFoundException("Image not yet assigned!!!!");
+	}
+	
+	@Override
+	public List<ProductResponseDTO> downloadImageAll() throws IOException {
+		List<Product> products = productDao.findAll();
+        List<ProductResponseDTO> productDTOs = new ArrayList<>();
+        byte[] imageData = null;
+        for (Product product : products) {
+            ProductResponseDTO productDTO = new ProductResponseDTO();
+            productDTO.setId(product.getId());
+            productDTO.setProductName(product.getProductName());
+            productDTO.setDescription(product.getDescription());
+            productDTO.setPrice(product.getPrice());
+            if (product.getImagePath() != null) {	
+            	imageData =	 FileUtils.readFileToByteArray(new File(product.getImagePath()));
+    		}
+            productDTO.setImage(imageData);
+            productDTOs.add(productDTO);
+        }
+        return productDTOs;
 	}
 
 }

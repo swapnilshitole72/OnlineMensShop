@@ -1,0 +1,27 @@
+package com.shopx.dto;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Table(name = "avg_rating")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+public class AvgRatingResponseDTO {
+
+	private Long productId;
+	private Double rating;
+//	public AvgRatingResponseDTO(Long productId, Double rating) {
+//		
+//		this.productId = productId;
+//		this.rating = rating;
+//	}
+	
+}

@@ -1,0 +1,10 @@
+package com.shopx.service;
+
+import java.util.List;
+
+import com.shopx.entities.Order;
+
+public interface OrderService {
+	
+	public List<Order> getAllOrders();
+}

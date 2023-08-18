@@ -1,0 +1,24 @@
+package com.shopx.dto;
+
+import com.shopx.entities.Product;
+import com.shopx.entities.User;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class OrderRequestDTO {
+	
+	private Double totalAmount;
+	
+	private Long quantity;
+	
+	private Double pricePerUnit;
+	
+	private Long customer;
+	
+	private Long product;
+}

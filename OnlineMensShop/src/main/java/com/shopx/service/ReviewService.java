@@ -10,4 +10,8 @@ public interface ReviewService {
 	public Review addNewReview(ReviewDTO review);
 	
 	public List<Review> getReviewByProductId(Long id);
+	
+	public Double getAvgProductRatingById(Long id);
+	
+//	public List<AvgRatingResponseDTO> getAvgProductRatingOfAllProducts();
 }

@@ -1,0 +1,19 @@
+package com.shopx.dto;
+
+import java.time.LocalDate;
+
+import com.shopx.entities.Product;
+import com.shopx.entities.User;
+
+public class OrderRequestDTO {
+	
+	private Double totalAmount;
+	
+	private Long quantity;
+	
+	private Double pricePerUnit;
+	
+	private User customer;
+	
+	private Product product;
+}

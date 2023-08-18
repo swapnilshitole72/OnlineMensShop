@@ -1,0 +1,56 @@
+package com.shopx.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.shopx.dao.OrderDao;
+import com.shopx.dto.OrderRequestDTO;
+import com.shopx.entities.Order;
+import com.shopx.entities.Product;
+import com.shopx.entities.User;
+
+@Service
+@Transactional
+public class OrderServiceImpl implements OrderService {
+
+	@Autowired
+	private OrderDao dao;
+	
+	@Autowired
+	private CustomerService customerService;
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private ModelMapper mapper;
+	
+	@Override
+	public List<Order> getAllOrders() {
+		return dao.findAll();
+	}
+
+	@Override
+	public Order getOrderByCustomerId(Long custId) {	
+		User customer = customerService.getCustomerById(custId));
+		return dao.findById(custId).orElseThrow();
+	}
+
+	@Override
+	public Order addNewOrderItem(OrderRequestDTO order) {
+		
+		User customer = customerService.getCustomerById(order.getCustomerId());
+		Product product = productService.getProductById(order.getProductId()).orElseThrow();
+		Order newOrder = mapper.map(order, Order.class);
+		newOrder.setCustomer(customer);
+		newOrder.setProduct(product);
+		return dao.save(newOrder);
+	}
+
+}

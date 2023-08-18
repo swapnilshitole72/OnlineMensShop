@@ -34,5 +34,22 @@ public class ReviewController extends BaseEntity{
 	{
 		return ResponseEntity.status(HttpStatus.OK).body(reviewService.getReviewByProductId(productId));
 	}
+	
 
+	//Avgerage rating by each individual product by id
+	@GetMapping("/rating{productId}")
+	public ResponseEntity<?> getAvgProductRatingById(@PathVariable Long productId)
+	{
+		return ResponseEntity.status(HttpStatus.OK).body(reviewService.getAvgProductRatingById(productId));
+	}
+	
+	
+	//Avgerage rating by all product
+//		@GetMapping("/avg")
+//		public ResponseEntity<?> getAvgProductRatingOfAll()
+//		{
+//			return ResponseEntity.status(HttpStatus.OK).body(reviewService.getAvgProductRatingOfAllProducts());
+//		}
+
+	
 }
