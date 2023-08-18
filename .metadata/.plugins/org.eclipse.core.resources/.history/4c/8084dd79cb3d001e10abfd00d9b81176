@@ -1,0 +1,26 @@
+package com.shopx.dto;
+
+import java.time.LocalDate;
+
+import com.shopx.entities.PaymentType;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class PaymentRequestDTO {
+	
+	private LocalDate paymentDate;
+	
+	private Double amountPaid;
+	
+	private PaymentType paymentType;
+	
+	private Long customerId;
+	
+	private Long orderId;
+
+}

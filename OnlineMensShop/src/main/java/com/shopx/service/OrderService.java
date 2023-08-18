@@ -14,4 +14,6 @@ public interface OrderService {
 	public Order addNewOrderItem(OrderRequestDTO order);
 	
 	public String deleteOrder(Long orderId);
+	
+	public Order getOrderByOrderId(Long orderId);
 }

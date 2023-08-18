@@ -1,0 +1,26 @@
+package com.shopx.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.shopx.dao.PaymentDao;
+import com.shopx.entities.Payment;
+
+public class PaymentServiceImpl implements PaymentService {
+
+	@Autowired
+	private PaymentDao dao;
+	
+	@Autowired
+	private CustomerService customerService;
+	
+	@Autowired
+	private OrderService orderService;
+	
+	@Override
+	public List<Payment> getAllPaymentDetails() {
+		return dao.findAll();
+	}
+
+}

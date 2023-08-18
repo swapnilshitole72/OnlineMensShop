@@ -25,7 +25,7 @@ import lombok.ToString;
 public class Payment extends BaseEntity{
 
 	@CreationTimestamp
-	private LocalDate paymentDate;
+	private LocalDate paymentDate=LocalDate.now();
 	
 	private Double amountPaid;
 	

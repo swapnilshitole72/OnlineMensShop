@@ -61,4 +61,10 @@ public class OrderServiceImpl implements OrderService {
 		return "Order Deleted Successfully";
 	}
 
+	@Override
+	public Order getOrderByOrderId(Long orderId) {
+		
+		return dao.findById(orderId).orElseThrow();
+	}
+
 }
