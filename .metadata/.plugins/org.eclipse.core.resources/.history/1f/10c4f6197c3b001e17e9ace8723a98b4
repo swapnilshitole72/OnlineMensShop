@@ -1,8 +1,0 @@
-package com.shopx.entities;
-
-import javax.persistence.Entity;
-
-@Entity
-public class Customer {
-
-}

@@ -1,0 +1,13 @@
+package com.shopx.service;
+
+import com.shopx.dto.CartDTO;
+import com.shopx.entities.CartItem;
+
+public interface CartService {
+	
+	public CartItem addProductToCart(CartDTO cart);
+	public CartItem showCartItems(Long id);
+	public String deletecartItem(long id);
+
+
+}

@@ -1,0 +1,5 @@
+package com.shopx.dto;
+
+public class CartDTO {
+
+}

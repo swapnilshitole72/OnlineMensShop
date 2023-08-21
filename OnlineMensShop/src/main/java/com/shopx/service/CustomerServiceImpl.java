@@ -2,15 +2,17 @@ package com.shopx.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import com.shopx.custom_exception.ResourceNotFoundException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.shopx.custom_exception.ResourceNotFoundException;
 import com.shopx.dao.CustomerDao;
 import com.shopx.dto.LoginDTO;
 import com.shopx.dto.SignUpDTO;
+import com.shopx.entities.ShoppingCart;
 import com.shopx.entities.User;
 
 @Service
@@ -26,7 +28,13 @@ public class CustomerServiceImpl implements CustomerService {
 	//Registration or creating new customer
 	@Override
 	public User newCustomerRegistration(SignUpDTO newCustomer) {
-		User customer = dao.save(mapper.map(newCustomer, User.class));		
+		
+		User cust = mapper.map(newCustomer, User.class);
+//		
+//		cust.setMyCart(newCart);
+//		
+		User customer = dao.save(cust);	
+//		createUserCart(customer);
 		return customer;
 	}
 
@@ -46,6 +54,15 @@ public class CustomerServiceImpl implements CustomerService {
 	public User loginValidationForm(LoginDTO login) {
 		return dao.findByEmailAndPassword(login.getEmail(), login.getPassword()).
 				orElseThrow(() -> new ResourceNotFoundException("Invalid Credentials , User not found!!"));
+	}
+	
+	
+	private void createUserCart(User user) {
+		ShoppingCart newCart = new ShoppingCart();
+		
+		user.addCart(newCart);
+//		dao.saveAndFlush(user);
+//		System.out.println("new cart created for user " + user.getFirstName());
 	}
 
 //	@Override

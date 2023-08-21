@@ -1,0 +1,7 @@
+package com.shopx.controller;
+
+@RestController
+@RequestMapping("/cart")
+public class CartController {
+
+}

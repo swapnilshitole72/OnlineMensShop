@@ -1,0 +1,38 @@
+package com.shopx.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.shopx.entities.User;
+import com.shopx.service.ShoppingCartService;
+
+@RestController
+@RequestMapping("/cart")
+public class CartController {
+
+	@Autowired
+	private ShoppingCartService cartService;
+	
+	@PostMapping("/add_to_cart")
+	public String addToCart(@RequestParam int quantity, @RequestParam long prodId, @RequestParam long userId) {
+//		System.out.println("in add to cart " + quantity + " " + prodId);
+		return cartService.addProductToCart(userId, prodId, quantity);
+	}
+	
+	@GetMapping("/show_cart")
+	public String showCartContents(HttpSession session, Model map) {
+		System.out.println("in show cart ");
+		// invoke service layer method to get cart contents
+		long userId = ((User) session.getAttribute("user_dtls")).getId();
+		// get cart details
+		map.addAttribute("cart", cartService.getCartDetails(userId));
+		return "/customer/show_cart";
+	}
+}

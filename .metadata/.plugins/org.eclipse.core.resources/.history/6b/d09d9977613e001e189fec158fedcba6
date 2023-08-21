@@ -1,0 +1,13 @@
+package com.shopx.dto;
+
+@Getter
+@Setter
+@ToString
+public class CartDTO {
+
+	private int quantity;
+	
+	private double totalPrice;
+	private long customer_id;
+	private Long product_id;
+}

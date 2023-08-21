@@ -1,0 +1,75 @@
+package com.shopx.service;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.shopx.dao.CartDao;
+import com.shopx.dao.ProductDao;
+import com.shopx.dto.CartDTO;
+import com.shopx.entities.CartItem;
+import com.shopx.entities.Product;
+import com.shopx.entities.User;
+
+public class CartServiceImpl implements CartService{
+
+	@Autowired	
+	private CartDao cartDao;
+	
+	@Autowired
+	private ProductService productservice;
+	
+	@Autowired
+	private CustomerService customerService;
+	
+
+	@Autowired
+	private ProductDao productdao;
+	@Autowired
+	private ModelMapper mapper;
+
+	@Override
+	public CartItem addProductToCart(CartDTO cart) {
+          CartItem item=mapper.map(cart, CartItem.class);
+          
+  		Product product=productservice.getProductById(cart.getProduct_id()).orElseThrow();
+  		User customer = customerService.getCustomerById(cart.getCustomer_id());
+          
+          if(cart.getProduct_id() != null)
+          {        	  
+        	  item.setProduct(product);
+      		  item.setUser(customer);
+      		cartDao.save(item);
+      		   return item;
+          }
+          else {
+        	  
+        	 int quantity= 
+                	  item.getQuantity()+1; 
+        	          item.setQuantity(quantity);
+          }
+
+		return item;
+	}
+
+	
+
+	@Override
+	public CartItem showCartItems(Long id) {
+		
+		User customer = customerService.getCustomerById(id);
+		//Product product=productservice.getProductById(customer.getId()).orElseThrow();
+		System.out.println(customer.getFirstName());
+		CartItem items=cartDao.findByQuantity(2L);
+		return items;
+	}
+
+
+
+	@Override
+	public String deletecartItem(long id) {
+		
+		cartDao.deleteById(id);
+		
+		return "item deleted successfully";
+	}
+}
