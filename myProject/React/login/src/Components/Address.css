@@ -1,0 +1,63 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-content: flex-end;
+    justify-content: center;
+    margin-top: 100px;
+    
+  }
+
+  .AddressContent{
+
+    width: 700px;
+    height: 700px;
+    border: black 2px solid;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    /* background-color: rgb(123, 175, 176); */
+
+  }
+
+  .inputBOX{
+    width: 400px;
+    height: 35px;
+  }
+
+  .inputDIV{
+    display: flex;
+    align-content: stretch;
+    justify-content: space-around;
+  }
+
+  .inputSmallBOX{
+    height: 35px;
+    width: 170px;
+  }
+
+  .DIVinputSmallBOX{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between
+  }
+
+  .button{
+    height: 30px;
+    width: 100px;
+    background-color: rgb(216, 240, 191);
+  }
+
+  .homebutton{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between
+  }
+  .Addaddress{
+width: 400px;
+height: 45px;
+background-color: rgb(233, 117, 117);
+
+  }
