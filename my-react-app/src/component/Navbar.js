@@ -17,41 +17,48 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <a className="nav-link active" aria-current="page" href="#">
                                     Home
-                                    </a>
+                                </a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#">
                                     Products
-                                    </a>
-                            </li> 
+                                </a>
+                            </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#">
                                     About
-                                    </a>
-                                    </li>
-                                    <li className="nav-item">
+                                </a>
+                            </li>
+                            <li className="nav-item">
                                 <a className="nav-link" href="#">
                                     Contact
-                                    </a>
-                                    </li> 
-                           
-                           
+                                </a>
+
+                            </li>
+                            <div class="container-fluid">
+                                <form class="d-flex" role="search">
+                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                </form>
+                            </div>
+
+
                         </ul>
-                       <div className='buttons'>
-                        {/* button over effect */}
-                          <a href='' className='btn btn-outline-dark'> 
-                          <i className='fa fa-sign-in me-1'></i>
-                            Login
-                          </a>
-                         <a href='' className='btn btn-outline-dark ms-2'>   {/*  ms-2 ne button madhe space yeto */}
-                          <i className='fa fa-user-plus me-1'></i>
-                            Ragister 
-                          </a>
-                          <a href='' className='btn btn-outline-dark ms-2 '> 
-                          <i className='fa fa-shopping-cart me-1'></i>
-                            Cart(0)
-                          </a>
-                       </div>
+                        <div className='buttons'>
+                            {/* button over effect */}
+                            <a href='' className='btn btn-outline-dark'>
+                                <i className='fa fa-sign-in me-1'></i>
+                                Login
+                            </a>
+                            <a href='' className='btn btn-outline-dark ms-2'>   {/*  ms-2 ne button madhe space yeto */}
+                                <i className='fa fa-user-plus me-1'></i>
+                                Ragister
+                            </a>
+                            <a href='' className='btn btn-outline-dark ms-2 '>
+                                <i className='fa fa-shopping-cart me-1'></i>
+                                Cart(0)
+                            </a>
+                        </div>
                     </div>
                 </div>
             </nav>
