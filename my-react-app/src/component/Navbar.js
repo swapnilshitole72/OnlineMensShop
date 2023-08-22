@@ -3,7 +3,7 @@ import React from 'react'
 export default function Navbar() {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg  navbar-light bg-light bg-white py-3 shadow-sm ">
+            <nav className="navbar navbar-expand-lg  navbar-light bg-light bg-white py-3 shadow-sm   ">
                 <div className="container">
 
                     {/* fs-4 fs-1 fs-3 hyane font increase decrease karta yeto */}
@@ -15,17 +15,17 @@ export default function Navbar() {
                         {/* mx kel tr links lamb jatet */}
                         <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">
+                                <a className="nav-link active" aria-current="page" href="/">
                                     Home
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="/products">
                                     Products
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="/products">
                                     About
                                 </a>
                             </li>
@@ -47,7 +47,7 @@ export default function Navbar() {
                         <div className='buttons'>
                             {/* button over effect */}
                             <a href='' className='btn btn-outline-dark'>
-                                <i className='fa fa-sign-in me-1'></i>
+                                <i className='fa fa-sign-in me-3'></i>
                                 Login
                             </a>
                             <a href='' className='btn btn-outline-dark ms-2'>   {/*  ms-2 ne button madhe space yeto */}
@@ -66,4 +66,3 @@ export default function Navbar() {
         </div>
     )
 }
-

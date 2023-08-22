@@ -1,5 +1,7 @@
 import React, { useState, useEffect  } from 'react'
-import Skeleton from 'react-loading-skeleton';
+import { Bars} from 'react-loading-icons'
+import {NavLink} from 'react-router-dom'
+
 
 
 export default function Products() {
@@ -45,12 +47,14 @@ export default function Products() {
                 <Skeleton height={350}/>
              </div>
               */}
-              Loading..
+              Loading........
+             <Bars></Bars>
                 
             </>
         );
     };
     
+
 
 
    
@@ -70,7 +74,8 @@ export default function Products() {
                     <br></br>
                 </div>
                 {filter.map((Products) => {
-                    return (
+                   
+                   return (
                         <>
                             <div className='col-md-3 mb-4 h-100' >
                                {/* this code template copy from boostrap card */}
@@ -84,7 +89,8 @@ export default function Products() {
                                         <p class="card-text lead fw-bold">
                                             $ {Products.price}</p>
 
-                                        <a href="/" class="btn btn-outline-dark">Buy Now</a>
+                                            <NavLink to={`/product/${Products.id}`} className="btn btn-outline-dark">Buy Now</NavLink>
+
                                     </div>
                                 </div>
 
