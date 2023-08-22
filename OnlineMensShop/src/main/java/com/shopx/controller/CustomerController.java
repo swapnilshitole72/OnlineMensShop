@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopx.dto.LoginDTO;
@@ -42,8 +43,8 @@ public class CustomerController {
 		return ResponseEntity.status(HttpStatus.OK).body(customerService.getAllCustomerDetails());
 	}
 	
-	@GetMapping("/{custId}")
-	public ResponseEntity<?> getCustomerById(Long custId)
+	@GetMapping("/user")
+	public ResponseEntity<?> getCustomerById(@RequestParam Long custId)
 	{
 		return ResponseEntity.status(HttpStatus.FOUND).body(customerService.getCustomerById(custId));
 	}
@@ -54,11 +55,11 @@ public class CustomerController {
 		return ResponseEntity.status(HttpStatus.OK).body(customerService.loginValidationForm(login));
 	}
 	
-//	@PutMapping
-//	public ResponseEntity<?> editCustomerProfil(@RequestBody @Valid SignUpDTO customer)
-//	{
-//		
-//	}
+	@PutMapping
+	public ResponseEntity<?> editCustomerProfil(@RequestBody SignUpDTO customer)
+	{
+		return ResponseEntity.status(HttpStatus.OK).body(customer);
+	}
 
 	
 	
