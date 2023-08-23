@@ -24,7 +24,7 @@ import lombok.val;
 
 @RestController
 @RequestMapping("/customer")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3001")
 public class CustomerController {
 	
 	@Autowired

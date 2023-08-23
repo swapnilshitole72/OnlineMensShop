@@ -1,8 +1,0 @@
-package com.shopx.service;
-
-import com.shopx.dto.SignUpDTO;
-
-public interface CustomerService {
-
-	public Customer newCustomerRegistration(SignUpDTO newCustomer);
-}

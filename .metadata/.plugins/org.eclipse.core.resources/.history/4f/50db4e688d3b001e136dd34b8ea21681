@@ -1,6 +1,0 @@
-package com.shopx.service;
-
-public interface CustomerService {
-
-	
-}
