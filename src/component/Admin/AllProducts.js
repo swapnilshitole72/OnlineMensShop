@@ -85,20 +85,20 @@ export default function  AllProducts() {
                    
                    return (
                         <>
-                            <div className='col-md-3 mb-4 h-100' >
+                            <div className='col-md-3 mb-4 h-100'>
                                {/* this code template copy from boostrap card */}
                                {/* p-4 p-3 used for adjust the width of product image  */}
-                                <div class="card h-100 text-center p-5" key={Products.id}  >
+                                < div class="card h-100 text-center p-5" key={Products.id} >
                                     <img src={Products.image} class="card-img-top" alt={Products.title} height="250px"/>
                                     <div class="card-body">
                                         <h5 class="card-title mb-0  ">{Products.title.substring(0, 18)}....</h5>
                                        
                                         {/* fw-bold  used for bold text */}
-                                        <p class="card-text lead fw-bold">
+                                        < p class="card-text lead fw-bold" >
                                             $ {Products.price}</p>
 
                                             <button onClick={handleDelete(Products.id)} className="btn btn-outline-danger">Delete</button>
-
+                                           
                                     </div>
                                 </div>
 

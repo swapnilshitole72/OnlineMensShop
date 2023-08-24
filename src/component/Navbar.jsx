@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 
+
 export default function Navbar() {
   const location = useLocation();
 
@@ -25,13 +26,27 @@ export default function Navbar() {
     
     return (
         <div>
-            <nav className="navbar navbar-expand-lg  navbar-light bg-light bg-white py-2 shadow-sm fixed-top" style={{ zIndex: 100 }} >
+            {/* <div >
+<span style=" color Shipping on All Orders
+"Get Extra <100 OFF on Spent
+<span>
+<span style=" color : #000; font
+of *999 Use Code:"
+BEYOUNGIØO
+</span>
+</div> */}
+
+    
+   <div>
+ 
+            <nav className="navbar navbar-expand-lg  navbar-light  bg-light bg-gray py-2 shadow-sm fixed-top" style={{ zIndex: 100}} >
+           
                 <div className="container-fluid">
 
                     {/* fs-4 fs-1 fs-3 hyane font increase decrease karta yeto */}
-                    <a className="navbar-brand fw-bold fs- " href="/" style={{ marginLeft: '50px' }}>
+                    <a className="navbar-brand fw-bold fs-2 " href="/" style={{ marginLeft: '50px',color:'#c209c1' }} >
                     <i className='fa fa-shopping-bag'></i> &nbsp;
-                        ShOpX</a>
+                    shopX  </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -39,24 +54,24 @@ export default function Navbar() {
                         {/* mx kel tr links lamb jatet */}
                         <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="/">
+                                <a className="nav-link active text-primary" aria-current="page" href="/">
                                     Home
                                 </a>
                             </li>
 
 
                             <li className="nav-item">
-                                <a className="nav-link" href="/AllProducts">
+                                <a className="nav-link  text-primary" href="/Products">
                                     Products
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link  text-primary" href="/AboutUs">
                                     About
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link  text-primary" href="/contactUs">
                                     Contact
                                 </a>
 
@@ -108,6 +123,7 @@ export default function Navbar() {
                 </div>
             </nav>
 
+        </div>
         </div>
     )
 }

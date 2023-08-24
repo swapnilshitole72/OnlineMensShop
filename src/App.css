@@ -3,3 +3,15 @@
 .navbar-nav a{
   font-size:18px;
 }
+
+
+.offer-top {
+    background: #f8eb27;
+    padding: 6px 0;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1d1d1d;
+    text-align: center;
+}
+
+
