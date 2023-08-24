@@ -8,6 +8,9 @@ import AddUser from './component/SignUp/register';
 import Footer from './component/Footer/Footer';
 import Login from './component/SignIn/login';
 import product from './component/Products/product';
+import ProfileDetails from './component/Profile/Profile';
+import CustomerList from './Admin/CustomerList';
+import AllProducts from './Admin/AllProducts';
 
 function App() {
   return (
@@ -27,8 +30,9 @@ function App() {
       <Route path="/register" component={AddUser} />
       <Route path="/login" component={Login} />
       <Route path="/product/:id" component={product} />
- 
-
+      <Route path="/profile" component={ProfileDetails}/>
+      <Route path="/customerList" component={CustomerList}/>
+      <Route path="/allProductsList" component={AllProducts}/>
     </Switch>
 <footer>
     <Footer></Footer>

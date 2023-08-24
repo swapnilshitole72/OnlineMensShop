@@ -94,7 +94,7 @@ export default function Navbar() {
                                 </a>) : (
                                 <a href='/register' className='btn btn-outline-dark ms-2'>   {/*  ms-2 ne button madhe space yeto */}
                                     <i className='fa fa-user-plus me-1'></i>
-                                    ragister
+                                    Register
                                 </a>
 
                             )}

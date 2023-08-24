@@ -1,9 +1,0 @@
-package com.shopx.dao;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.shopx.entities.User;
-
-public interface ProductDao extends JpaRepository<User, Long>{
-
-}

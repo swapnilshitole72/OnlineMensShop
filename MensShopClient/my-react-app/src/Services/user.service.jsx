@@ -8,10 +8,19 @@ import httpClient from '../http-common';
     return httpClient.post('customer/login', data);
   };
 
+  const get = (custId) => {
+    return httpClient.get(`customer/${custId}`);
+  };
   
-  
+  const getAll = () => {
+    return httpClient.get('customer');
+  };
+
+  const remove = (productId) => {
+    return httpClient.delete(`product/${productId}`);
+  }
   // const get = (id) => {
   //   return httpClient.get(`${id}`);
   // };
 
-export default { create ,login};
+export default { create ,login, get, getAll, remove};

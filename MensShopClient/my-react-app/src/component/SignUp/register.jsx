@@ -54,7 +54,6 @@ export default function AddUser() {
   .then((response)=>{
     console.log('user registered successfully',response.data)
     toast.success("user registered successfully");
-
   })
   .catch((error)=>{
     toast.error("something went wrong")

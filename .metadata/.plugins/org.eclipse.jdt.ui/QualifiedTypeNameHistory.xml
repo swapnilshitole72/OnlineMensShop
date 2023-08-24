@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.shopx.dto.SignUpDTO"/>
     <fullyQualifiedTypeName name="javax.validation.Valid"/>
     <fullyQualifiedTypeName name="com.shopx.entities.Customer"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.NotBlank"/>
     <fullyQualifiedTypeName name="com.shopx.dto.ProductRequestDTO"/>
-    <fullyQualifiedTypeName name="com.shopx.entities.Product"/>
     <fullyQualifiedTypeName name="com.shopx.dto.AvgRatingResponseDTO"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
@@ -59,4 +57,7 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
+    <fullyQualifiedTypeName name="com.shopx.dto.CustomerResponseDTO"/>
+    <fullyQualifiedTypeName name="com.shopx.entities.Product"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>

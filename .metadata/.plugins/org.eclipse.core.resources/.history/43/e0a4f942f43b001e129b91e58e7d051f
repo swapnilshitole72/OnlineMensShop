@@ -1,5 +1,0 @@
-package com.shopx.exception;
-
-public class GlobalExceptionHandler {
-
-}
