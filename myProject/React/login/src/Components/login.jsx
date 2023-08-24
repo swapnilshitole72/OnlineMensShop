@@ -1,26 +1,22 @@
 import React from 'react'
 import './login.css';
-import { useHistory } from "react-router-dom";
+import ForgotPassword from './Forgpas'
+
 // import 'bootstrap/dist/css/bootstrap.css';
 // import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope,faLock} from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom';
+
 export default function Login() {
-  const history = useHistory();
-
-  const handleNavigate = () => {
-    // Navigate to the target route
-    history.push('/target-route');
-  };
+  
+  
 
 
 
 
-
-//   const signup=()=>{
+  //  const signup=()=>{
     
 // <img src="598847.jpeg" alt="" />
 //   } 
@@ -48,19 +44,19 @@ export default function Login() {
                        <input className='inputBOX' type="password"  autoComplete='off'  placeholder='     Password'/>
 
                        </div>
+                       
               <br />
-              <Link to="./Forgpas.jsx">Go to Home</Link>
+              <a href="/ForgotPassword">Forgot password</a>
               
-              <h5  > <a >forgot password</a> </h5> 
-              <button onClick={handleNavigate}>Navigate</button>
+             <br /><br />
              
               <div className='buttonDIV' >
-              <input type="button" value="forgot password"  />
-              
+              {/* <input type="button" value="forgot password"  /> */}
+              <i></i>
                 {/* <input type="button" value="Sign in" className='buttonBOX' /> */}
-                <Button  className='buttonBOX' variant="success">Sign in</Button>{' '}
                 {/* <button   className='buttonBOX' onClick={signup}></button> */}
-                <Button  className='buttonBOX' variant="success">Sign up</Button>{' '}
+                <Button  className='buttonBOX' variant="success">Sign up</Button>
+
 
                 {/* <input type="button" value="Sign up" className='buttonBOX'/> */}
                 
