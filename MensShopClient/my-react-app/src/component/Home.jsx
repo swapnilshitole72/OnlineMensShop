@@ -7,7 +7,7 @@ export default function Home() {
     return (
 
         <>
-        <div className='container-fluid' style={{marginTop:'100px'}}>
+        <div className='container-fluid' style={{marginTop:'75px'}}>
                 <Carousel></Carousel>
                 </div>
         <div className='container'>

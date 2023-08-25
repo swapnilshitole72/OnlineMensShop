@@ -17,6 +17,7 @@ public class ProductRequestDTO {
 	
 	private String productName;
 	
+	private MultipartFile imagePath;
 	
 	private String description;
 	

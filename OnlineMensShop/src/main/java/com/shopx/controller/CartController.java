@@ -1,5 +1,7 @@
 package com.shopx.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shopx.entities.ShoppingCart;
+import com.shopx.dto.CartResponseDTO;
 import com.shopx.service.ShoppingCartService;
 
 @RestController
@@ -29,5 +31,10 @@ public class CartController {
 	public ResponseEntity<?> showCartContents() {
 		return  ResponseEntity.status(HttpStatus.OK).body(cartService.getCartDetails());
 		
+	}
+	
+	@GetMapping("/{custId}")
+	public List<CartResponseDTO> getAllCartItemsByCustomerId(@RequestParam Long custId){
+		return cartService.getAllCartItemsByCustId(custId);
 	}
 }

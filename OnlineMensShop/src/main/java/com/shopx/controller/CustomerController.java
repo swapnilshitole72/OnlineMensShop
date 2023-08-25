@@ -73,7 +73,11 @@ public class CustomerController {
 	}
 
 	
-	
+	@PostMapping("/address/{userId}")
+	public User addAddress(@PathVariable Long userId, @RequestBody String address)
+	{
+		return customerService.addAddress(userId, address);
+	}
 	
 	
 

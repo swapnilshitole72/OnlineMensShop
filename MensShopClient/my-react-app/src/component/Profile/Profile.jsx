@@ -9,6 +9,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import userService from '../../Services/user.service';
 import './ProfileDetails.css'
+import ProfilePage from './ProfilePage';
+import Address from '../SignUp/Address';
 
 
 const ProfileDetails = () => {
@@ -87,9 +89,6 @@ const ProfileDetails = () => {
         <h1 className='d-flex justify-content-center align-items-center' style={{alignContent:'center'}}>Profile</h1>
             
     <div className='Outerclass1' >
-    {/* <div> */}
-
-      {/* </div> */}
       <br />
       
       <div className='content'>  {/*inner data box */}
@@ -176,8 +175,10 @@ const ProfileDetails = () => {
                                                
       </div>
     </div>
-   
+
+  {/* <Address></Address>  */}
   </div>
+
 
   );
 };

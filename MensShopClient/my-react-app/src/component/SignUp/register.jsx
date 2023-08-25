@@ -54,6 +54,7 @@ export default function AddUser() {
   .then((response)=>{
     console.log('user registered successfully',response.data)
     toast.success("user registered successfully");
+
   })
   .catch((error)=>{
     toast.error("something went wrong")
@@ -135,7 +136,7 @@ export default function AddUser() {
 
                        <div className='icon'>  {/*Div for ur name */}
                        <FontAwesomeIcon  icon={faMobile} size="xl" />
-                       <input className='inputBOX' type="text"  autoComplete='off' 
+                       <input className='inputBOX' type="mobile"  autoComplete='off' 
                        id='mobile'
                        value={mobile}
                        onChange={(e)=>setMobile(e.target.value)}

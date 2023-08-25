@@ -1,7 +1,9 @@
 package com.shopx.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.shopx.custom_exception.ResourceNotFoundException;
 import com.shopx.dao.CustomerDao;
+import com.shopx.dto.CustomerResponseDTO;
 import com.shopx.dto.LoginDTO;
 import com.shopx.dto.SignUpDTO;
 import com.shopx.entities.ShoppingCart;
@@ -41,7 +44,15 @@ public class CustomerServiceImpl implements CustomerService {
 	//Finding all customer details
 	@Override
 	public List<User> getAllCustomerDetails() {
-		return dao.findAll();
+		
+		List<User> cust = dao.findAll();
+		List<CustomerResponseDTO> dto = new ArrayList<CustomerResponseDTO>();
+		for (User user : cust) {
+			CustomerResponseDTO c = mapper.map(user, CustomerResponseDTO.class);			
+			dto.add(c);
+		}
+
+		return  cust;
 	}
 
 	@Override
@@ -70,6 +81,15 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		
 		return dao.saveAndFlush(mapper.map(editCustomer, User.class));
+	}
+
+	@Override
+	public User addAddress(Long userId, String address) {
+		
+		User user = dao.findById(userId).orElseThrow();
+		user.setAddress(address);
+		dao.save(user);
+		return dao.save(user);
 	}
 
 }

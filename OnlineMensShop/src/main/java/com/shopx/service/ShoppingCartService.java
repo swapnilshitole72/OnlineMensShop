@@ -2,6 +2,7 @@ package com.shopx.service;
 
 import java.util.List;
 
+import com.shopx.dto.CartResponseDTO;
 import com.shopx.entities.ShoppingCart;
 
 public interface ShoppingCartService {
@@ -13,4 +14,6 @@ public interface ShoppingCartService {
 	int getTotalCartItems(long userId);
 	//	String deleteCart(long userId);
 	String deleteCartContents(long userId);
+	
+	List<CartResponseDTO> getAllCartItemsByCustId(Long custId);
 }

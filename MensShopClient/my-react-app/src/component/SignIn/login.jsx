@@ -31,7 +31,7 @@ export default function Login() {
       email,
       password
     };
-
+debugger
     userService
       .login(user)
       .then((response) => {
@@ -109,7 +109,7 @@ export default function Login() {
             <input type='submit' onClick={(e)=>loginUser(e)} className='btn btn-dark btn-lg' value={'Login'}/> 
           </div>
           </div>
-          <br /> <br />
+          <br /> 
           <ToastContainer
                               position="top-right"
                               autoClose={2500}
@@ -125,6 +125,7 @@ export default function Login() {
         </div>
         </form>
       </div>
+      <br /> <br /> <br /> <br /> <br />
     </>
   )
 }

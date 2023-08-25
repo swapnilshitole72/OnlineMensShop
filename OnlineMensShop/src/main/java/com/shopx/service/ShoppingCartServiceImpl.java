@@ -1,7 +1,9 @@
 package com.shopx.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +12,7 @@ import com.shopx.custom_exception.ResourceNotFoundException;
 import com.shopx.dao.CartItemRepository;
 import com.shopx.dao.ProductDao;
 import com.shopx.dao.ShoppingCartRepository;
+import com.shopx.dto.CartResponseDTO;
 import com.shopx.entities.CartItem;
 import com.shopx.entities.Product;
 import com.shopx.entities.ShoppingCart;
@@ -31,6 +34,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	
 	@Autowired
 	private CartItemRepository cartItemRepo;
+	
+	@Autowired
+	private ModelMapper mapper;
 
 	@Override
 	public String addProductToCart(long userId, long prodId, int quantity) {
@@ -99,6 +105,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		cart.setTotalItems(0);
 		System.out.println("deleted cart items "+deletedCartItems);		
 		return "user's cart emptied !!!!!";
+	}
+
+	@Override
+	public List<CartResponseDTO> getAllCartItemsByCustId(Long custId) {
+		
+		List<CartItem> cart = cartItemRepo.findAll();
+		List<CartResponseDTO> dto=new ArrayList<CartResponseDTO>();
+		
+		for (CartItem items : cart) {
+				CartResponseDTO cartItems = mapper.map(items, CartResponseDTO.class);
+				dto.add(cartItems);
+		}
+		return dto;
 	}
 
 }

@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class CustomerResponseDTO {
 
+	private Long id;
 	
 	private String firstName;
 	

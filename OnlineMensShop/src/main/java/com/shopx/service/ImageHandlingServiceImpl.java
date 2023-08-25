@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shopx.custom_exception.ResourceNotFoundException;
@@ -23,6 +24,7 @@ import com.shopx.entities.User;
 
 @Service
 @Transactional
+
 public class ImageHandlingServiceImpl implements ImageHandlingService {
 	//dep:product dao i/f
 	
@@ -53,6 +55,7 @@ public class ImageHandlingServiceImpl implements ImageHandlingService {
 	@Override
 	public String uploadImage(Long productId, MultipartFile file) throws IOException {
 		//check if product exists by id
+		System.out.println("in thisw kdfa;l "+productId);
 		Product product = productDao.findById(productId).orElseThrow(()->new ResourceNotFoundException("Invalid product id!!"));
 		//product: persistent
 		//save uploaded file contents in server side folder.
@@ -69,6 +72,7 @@ public class ImageHandlingServiceImpl implements ImageHandlingService {
 	@Override
 	public byte[] downloadImage(Long productId) throws IOException {
 		// get product from DB
+		System.out.println(productId);
 		Product product = productDao.
 				findById(productId).orElseThrow(() -> new ResourceNotFoundException("Invalid product id !!!!!"));
 		// => product exists !

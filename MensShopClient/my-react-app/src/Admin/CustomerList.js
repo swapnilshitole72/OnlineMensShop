@@ -11,8 +11,10 @@ const CustomerList = () => {
     userService
       .getAll()
       .then((response) => {
-        console.log('Printing customer data', response.data);
+        // console.log('Printing customer data', response.data);
         setCustomer(response.data);
+        console.log(customers);
+        // debugger
         // setTempemp(response.data);
         //  console.warn(response.data);
       })
@@ -37,8 +39,9 @@ const CustomerList = () => {
         console.log('Something went wrong', error);
       });
   };
-
+debugger
   return (
+    
     <div className='container'>
       <h3 style={{ color: 'blue' }}>List of Users</h3>
 
@@ -62,6 +65,7 @@ const CustomerList = () => {
                 <td>{customer.firstName}</td>
                 <td>{customer.lastName}</td>
                 <td>{customer.email}</td>
+                
                 <td>{customer.mobile}</td>
                 
                 {/* <td>
@@ -93,8 +97,11 @@ const CustomerList = () => {
                 </td>
               </tr>
             ))}
+
           </tbody>
+          
         </table>
+        
       </div>
     </div>
   );
