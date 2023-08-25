@@ -30,7 +30,6 @@ public class PaymentController {
 	@PostMapping
 	public ResponseEntity<?> addNewPaymentDetails(@RequestBody  PaymentRequestDTO payment)
 	{
-		System.out.println(payment);
 		return ResponseEntity.status(HttpStatus.CREATED).body(paymentService.addNewPaymentDetails(payment));
 	}
 	
