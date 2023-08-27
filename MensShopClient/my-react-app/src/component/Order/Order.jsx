@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import ProductImage from '../Products/ProductImage';
 import { counter } from '@fortawesome/fontawesome-svg-core';
-
+import './PaymentOptions.css';
 
 function StyledDiv() {
 
@@ -19,6 +19,11 @@ function StyledDiv() {
     const [customerId, setCustomerId] = useState();
     const [quantity, setQuantityId] = useState(1);
     const [count, setCount] = useState(1);
+
+    const[amountPaid,setAmountPaid]=useState();
+    const[orderId,setOrderId]=useState();
+
+    const [paymentType, setSelectedPayment] = useState(null);
     const { id } = useParams();
 
     debugger
@@ -59,6 +64,28 @@ function StyledDiv() {
         history.push('/address');
     };
 
+    const paymentHandler=(e)=>{
+        e.preventDefault();
+        const payment = {
+            amountPaid,
+            paymentType,
+            customerId,
+            orderId
+
+        };
+        // debugger
+        userService
+            .setPayment(payment)
+            .then((orderDone) => {
+                // setAmountPaid(orderDone.data)
+                console.log(orderDone);
+
+                history.push('/products')
+            })
+            .catch((error) => {
+                console.log('Something went wrong', error);
+            });
+    }
 
     const confirmOrder = (e) => {
         e.preventDefault();
@@ -72,6 +99,8 @@ function StyledDiv() {
         userService
             .setOrder(order)
             .then((orderDone) => {
+                setAmountPaid(orderDone.data.totalAmount);
+                setOrderId(orderDone.data.id);
                 console.log(orderDone);
             })
             .catch((error) => {
@@ -178,10 +207,69 @@ function StyledDiv() {
                 <div className="styled-div" style={{ marginTop: "30px" }}>
                     <div className="content">
                         <h3>Payment Option</h3>
-                    
+                        <hr></hr>
+                        <div>
+                            <div className="bg-info">
+                                <div className="row justify-content-center ">
+                                    <div className="col-lg-12 ">
+                                        <div className="card payment-card bg-dark text-white">
+                                            <div className="card-body">
+                                                <form>
+
+                                                    <div className="form-check mb-3">
+                                                        <input className="form-check-input" type="radio" name="paymentMethod" id="WALLET" value="WALLET" 
+                                                        onChange={() => setSelectedPayment('WALLET')}
+                                                        />
+                                                        <label className="form-check-label" htmlFor="walletRadio">
+                                                            Wallet
+                                                        </label>
+                                                    </div>
+                                                    <div className="form-check mb-3">
+                                                        <input className="form-check-input" type="radio" name="paymentMethod" id="CASH_ON_DELIVERY" value="CASH_ON_DELIVERY"
+                                                        onChange={() => setSelectedPayment('CASH_ON_DELIVERY')}
+                                                        
+                                                        />
+                                                        <label className="form-check-label" htmlFor="cashOnDeliveryRadio">
+                                                            Cash on Delivery
+                                                        </label>
+                                                    </div>
+                                                    <div className="form-check mb-3">
+                                                        <input className="form-check-input" type="radio" name="paymentMethod" id="NET_BANKING" value="NET_BANKING" 
+                                                        onChange={() => setSelectedPayment('NET_BANKING')}
+                                                        />
+                                                        <label className="form-check-label" htmlFor="netBankingRadio">
+                                                            Net Banking
+                                                        </label>
+                                                    </div>
+                                                    <div className="form-check">
+                                                        <input className="form-check-input" type="radio" name="paymentMethod" id="CARD" value="CARD" 
+                                                        onChange={() => setSelectedPayment('CARD')}
+                                                        />
+                                                        <label className="form-check-label" htmlFor="cardRadio">
+                                                            Card
+                                                        </label>
+                                                    </div>
+                                                    <div className="form-check">
+                                                        <input className="form-check-input" type="radio" name="paymentMethod" id="UPI" value="UPI" 
+                                                        onChange={() => setSelectedPayment('UPI')}
+                                                        />
+                                                        <label className="form-check-label" htmlFor="cardRadio">
+                                                            UPI
+                                                        </label>
+                                                    </div>
+                                                    <button type="submit" className="btn btn-success mt-3" onClick={paymentHandler}>
+                                                        Proceed to Payment
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className="button-container">
-                        <button className="btn btn-primary">Change</button>
+                        <button className="btn btn-secondary" onClick={cancelOrder}>Cancel Payment</button>
                     </div>
                 </div>
             </div>

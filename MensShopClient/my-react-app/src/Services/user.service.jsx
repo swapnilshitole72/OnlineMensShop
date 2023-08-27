@@ -16,6 +16,14 @@ import httpClient from '../http-common';
     return httpClient.get('customer');
   };
 
+  const updateCustomer=(user)=>{
+    return httpClient.put('customer/update/',user);
+  };
+
+  const setPassward=(user)=>{
+    return httpClient.put('customer/password',user);
+  };
+
   const setAddress=(userId,Addres)=>{
     return httpClient.post(`customer/address/${userId}`,Addres);
   };
@@ -45,16 +53,50 @@ import httpClient from '../http-common';
   };
 
   const setOrder=(order)=>{
-    return httpClient.post('order/',order)
+    return httpClient.post('order/',order);
+  };
+
+  const getOrderByCustId=(id)=>{
+    return httpClient.get(`order/${id}`);
+
   };
 
   const remove = (productId) => {
     return httpClient.delete(`product/${productId}`);
   }
 
+  const setPayment=(payment)=>{
+    return httpClient.post('payment/',payment)
+  };
 
+  const createOTP=(Email)=>{
+    return httpClient.post('customer/getotpforforgotpass',Email);
+  }
+
+  const verifyOTP=(otp)=>{
+        return httpClient.post('customer/verifyotpforforgot',otp); 
+  }
+
+  const adddchangedpass=(saveforgorObject)=>{
+    
+    return httpClient.post('customer/storenewpass',saveforgorObject); 
+  }
+
+  const getAllPayments=()=>{
+    return httpClient.get('payment');
+  };
+
+  const getAllReview=(id)=>{
+    return httpClient.get(`review/${id}`);
+  };
+
+  const addReview=(Review)=>{
+    return httpClient.post('review',Review);
+  }
   // const get = (id) => {
   //   return httpClient.get(`${id}`);
   // };
 
-export default { create ,login, get, setAddress, getAll, getAllProducts, getProduct, setImage, Addproducts, getByCategory, remove, getImage, setOrder};
+export default { create ,login, get, setAddress, getAll, updateCustomer, setPassward, getAllProducts, getProduct, setImage, 
+  Addproducts, getByCategory, remove, getImage, getOrderByCustId, setOrder, setPayment,
+  adddchangedpass, verifyOTP, createOTP, getAllPayments, getAllReview, addReview};

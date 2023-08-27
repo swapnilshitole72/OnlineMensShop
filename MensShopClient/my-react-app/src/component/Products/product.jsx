@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import userService from '../../Services/user.service';
 import ProductImage from './ProductImage';
 import { Link } from 'react-router-dom';
+import Review from './DisplayReview';
 // import {SpinningCircles} from 'react-loading-icons'
 
 export default function ({ addToCart }) {
@@ -72,7 +73,7 @@ export default function ({ addToCart }) {
 
                     <Link to={`/order/${data.id}`} className="btn btn-dark ms-2 px-4 py-2">Buy Now</Link>
                     {/* <a href="/order" className="btn btn-dark ms-2 px-4 py-2">Buy Now</a> */}
-
+                    <Review id={data.id}></Review>
                 </div>
 
 

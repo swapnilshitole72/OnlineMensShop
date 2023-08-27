@@ -1,0 +1,14 @@
+.custom-card {
+    background-color: #f8f9fa; /* Custom background color */
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    transition: transform 0.2s; /* Hover effect */
+    border: 1px solid #ced4da; /* Border */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  .custom-card:hover {
+    transform: scale(1.05); /* Zoom in on hover */
+    background-color: #007bff; /* Custom background color on hover */
+    color: white; /* Text color on hover */
+  }

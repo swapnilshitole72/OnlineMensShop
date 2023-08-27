@@ -1,29 +1,27 @@
 import React from 'react'
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import Button from 'react-bootstrap/Button';
 import './Address.css'
 import { useState } from 'react';
-
+import { useHistory } from 'react-router-dom';
 
 import userService from '../../Services/user.service';
 export default function Address() {
 
-  const [Addres, setAddress] = useState('');
+  const history = useHistory();
+  
+  var [Addres, setAddre] = useState('');
   const [pin, setPin] = useState();
   const [house, setHouse] = useState('');
   const [locality, setLocality] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
 
+const Back=()=>{
+  history.goBack();
+};
 
-  function sayHello() {
-    alert('hello');
-    // <img src="598847.jpeg" alt="" />
 
-  }
-
-  const saveAddress = (e) => {
-    setAddress(house + ', ' + locality + ', ' + city + ', ' + state+'- '+pin);
+  const saveAddress = () => {
+    setAddre(house + ', ' + locality + ', ' + city + ', ' + state+'- '+pin);
 
     debugger
     userService
@@ -31,6 +29,7 @@ export default function Address() {
       .then((response) => {
         debugger
         console.log(response);
+        // history.goBack();
 
       })
       .catch((error) => {
@@ -41,11 +40,13 @@ export default function Address() {
   return (
     <>
       <div className='container'>
+        <div className='AddressContent '>
+        <br></br>
+        <center>
 
-        <div className='AddressContent'>
-
-          <h2>Edit Address</h2>
+          <h2>Change Address</h2>
           <br></br>
+          </center>
           <div>
 
 
@@ -66,12 +67,18 @@ export default function Address() {
                   </td>
                 </tr>
                 <tr>
+                  <td><br></br></td>
+                </tr>
+                <tr>
                   <td>Landmark</td>
                   <td><input className='inputBOX' type="text" placeholder='Address(house No,Building,street,Area)*'
                 id='house'
                 value={house}
                 onChange={(e) => setHouse(e.target.value)}
               /></td>
+                </tr>
+                <tr>
+                  <td><br></br></td>
                 </tr>
                 <tr>
                   <td>Town</td>
@@ -82,12 +89,18 @@ export default function Address() {
               /></td>
                 </tr>
                 <tr>
+                  <td><br></br></td>
+                </tr>
+                <tr>
                   <td>City</td>
                   <td><input className='inputSmallBOX' type="text" placeholder='City / District*'
                 id='city'
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
               /></td>
+                </tr>
+                <tr>
+                  <td><br></br></td>
                 </tr>
                 <tr>
                   <td>State</td>
@@ -98,16 +111,23 @@ export default function Address() {
               />
               </td>
                 </tr>
+                <tr>
+                  <td><br></br></td>
+                </tr>
 
                 <tr>
-                  <td colSpan={2}>
+                  <td></td>
+                  <td >
 
-                  <button className='btn btn-primary' onClick={saveAddress}> ADD ADDRESS</button>
+                  <button className='btn btn-primary' onClick={saveAddress}> Change Address</button>&emsp;&emsp;&emsp;
+                  <button className='btn btn-secondary' onClick={Back}> Go Back</button>
 
                   </td>
                 </tr>
               </tbody>
             </table>
+             
+            <br></br>
 
 
             <div>
@@ -122,7 +142,9 @@ export default function Address() {
 
         </div>
 
-
+<br></br>
+<br></br>
+<br></br>
       </div>
 
 

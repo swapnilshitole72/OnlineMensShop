@@ -3,7 +3,8 @@ import React from 'react';
 
 export default function App() {
   return (
-    <footer className='bg-light text-center text-dark'>
+    // 
+    <footer className='bg-light text-center text-dark ' >
       <div className='container-fluid p-4 pb-0'>
         <div className='row'>
           <hr></hr>

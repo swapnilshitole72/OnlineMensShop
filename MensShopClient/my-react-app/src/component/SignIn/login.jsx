@@ -38,7 +38,8 @@ debugger
         console.log('user loged in successfully', response.data);
         sessionStorage.setItem('IsUserLoggedIn',true);
         sessionStorage.setItem('userId',response.data.id);
-        // console.log(sessionStorage.getItem('userId')+sessionStorage.getItem('IsUserLoggedIn'))
+        sessionStorage.setItem('userName',response.data.firstName);
+        sessionStorage.setItem('userRole',response.data.role);
         toast.success("user loged in successfully");
 
         const newLocation = { ...location, pathname: '/' };
@@ -48,7 +49,7 @@ debugger
 
       })
       .catch((error) => {
-        toast.error(error.response.data)
+        toast.error("Something went wrong, please try again...")
         sessionStorage.setItem('IsUserLoggedIn',false);
         console.log("something went wrong", error.response.data)
 
@@ -98,7 +99,7 @@ debugger
           </div>
           <br />
           <div>
-         <small >Forgot password ?<span><a href="/forgotPass">Click Here</a></span></small>
+         <small >Forgot password ?<span><a href="/forgotpass">Click Here</a></span></small>
          &emsp;&emsp;&emsp;
          <h6 onClick={()=>resetPage()} className='btn btn-outline-secondary' >Reset</h6>
          </div>

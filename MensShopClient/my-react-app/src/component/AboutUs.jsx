@@ -12,6 +12,7 @@ function AboutUs() {
             src="/assets/aboutus.png"
             alt=""
             className="img-fluid"
+            style={{height:"400px"}}
           />
           </div>
        
