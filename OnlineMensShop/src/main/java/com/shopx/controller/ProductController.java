@@ -59,7 +59,7 @@ public class ProductController {
 	}
 	
 	//save image to server side folder by image handling 
-	@PostMapping(value="/{empId}",consumes = "multipart/form-data")
+	@PostMapping(value="/uploadimage/{empId}",consumes = "multipart/form-data")
 	public ResponseEntity<?> uploadEmpImge(@PathVariable Long empId, 
 			@RequestParam MultipartFile imageFile) throws IOException
 	{

@@ -1,0 +1,11 @@
+package com.shopx.dto;
+
+public class EditPasswordDTO {
+	
+	private Long id;
+	
+	private String newpaasword;
+
+	private String oldpassword;
+
+}

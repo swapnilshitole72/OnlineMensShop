@@ -1,5 +1,0 @@
-package com.shopx.dto;
-
-public class OrderRequestDTO {
-
-}

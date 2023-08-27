@@ -10,6 +10,7 @@ public interface CustomerDao extends JpaRepository<User, Long>{
 	
 	Optional<User> findByEmailAndPassword(String email, String password);
 	
+	User findByEmail(String email);
 //	@Query(value = "update users set address=?1 where "
 //			+ "")
 }

@@ -27,7 +27,6 @@ public class Product extends BaseEntity{
 	private String description;
 	@Range(min = 0)
 	private double price;
-	
 	@Enumerated(EnumType.STRING)
 	private CategoryType category;
 

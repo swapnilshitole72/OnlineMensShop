@@ -37,8 +37,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Order getOrderByCustomerId(Long custId) {	
+	public List<Order> getOrderByCustomerId(Long custId) {	
 		User customer = customerService.getCustomerById(custId);
+		System.out.println(customer);
 		return dao.findByCustomer(customer);
 	}
 

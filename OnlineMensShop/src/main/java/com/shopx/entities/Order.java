@@ -29,6 +29,7 @@ public class Order extends BaseEntity{
 	
 	private Long quantity;
 	
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
 	private User customer;

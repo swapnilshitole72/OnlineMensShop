@@ -1,0 +1,303 @@
+package com.shopx.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.shopx.custom_exception.ResourceNotFoundException;
+import com.shopx.dao.CustomerDao;
+import com.shopx.dao.OTPRepository;
+import com.shopx.dto.ChangePasswordDTO;
+import com.shopx.dto.CustomerResponseDTO;
+import com.shopx.dto.EditCustomerDTO;
+import com.shopx.dto.EditPassDTO;
+import com.shopx.dto.EditPasswordDTO;
+import com.shopx.dto.LoginDTO;
+import com.shopx.dto.OTPVerificationDTO;
+import com.shopx.dto.SignUpDTO;
+import com.shopx.entities.OTP;
+import com.shopx.entities.ShoppingCart;
+import com.shopx.entities.User;
+
+@Service
+@Transactional
+public class CustomerServiceImpl implements CustomerService {
+	
+	@Autowired
+	private CustomerDao dao;
+	
+	@Autowired
+	private ModelMapper mapper;
+	
+	@Autowired
+	private OTPRepository otprepository;
+	
+	@Autowired
+    private JavaMailSender javaMailSender;
+	
+	//Registration or creating new customer
+	@Override
+	public User newCustomerRegistration(SignUpDTO newCustomer) {
+		
+		User cust = mapper.map(newCustomer, User.class);
+//		
+//		cust.setMyCart(newCart);
+//		
+		User customer = dao.save(cust);	
+//		createUserCart(customer);
+		return customer;
+	}
+
+	//Finding all customer details
+	@Override
+	public List<User> getAllCustomerDetails() {
+		
+		List<User> cust = dao.findAll();
+		List<CustomerResponseDTO> dto = new ArrayList<CustomerResponseDTO>();
+		for (User user : cust) {
+			CustomerResponseDTO c = mapper.map(user, CustomerResponseDTO.class);			
+			dto.add(c);
+		}
+
+		return  cust;
+	}
+
+	@Override
+	public User getCustomerById(Long id) {
+		
+		return dao.findById(id).orElseThrow(()->new NoSuchElementException("Invalid Customer Id"));
+	}
+
+	@Override
+	public User loginValidationForm(LoginDTO login) {
+		return dao.findByEmailAndPassword(login.getEmail(), login.getPassword()).
+				orElseThrow(() -> new ResourceNotFoundException("Invalid Credentials , User not found!!"));
+	}
+	
+	
+	private void createUserCart(User user) {
+		ShoppingCart newCart = new ShoppingCart();
+		
+		user.addCart(newCart);
+//		dao.saveAndFlush(user);
+//		System.out.println("new cart created for user " + user.getFirstName());
+	}
+
+	@Override
+	public User editCustomerProfil(EditCustomerDTO editCustomer) {
+		
+		User user = getCustomerById(editCustomer.getId());
+//		if(user!=null)
+		
+		User cust = mapper.map(editCustomer, User.class);
+		cust.setPassword(user.getPassword());
+		return dao.save(cust);
+		
+		
+	}
+
+	@Override
+	public User addAddress(Long userId, String address) {
+		
+		User user = dao.findById(userId).orElseThrow();
+		user.setAddress(address);
+		dao.save(user);
+		return dao.save(user);
+	}
+
+	@Override
+	public String editCustomerPassword(EditPasswordDTO pass) {
+		
+		User cust = getCustomerById(pass.getId());
+		if(cust.getPassword().equals(pass.getOldpassword()))
+		{
+			cust.setPassword(pass.getNewpaasword());
+			return "Password changed successfully";
+		}
+		return "Invalid email or old password";
+	}
+	
+	  OTP otpobj=new OTP();
+
+	    
+//    @Override
+//    public void sendOTPAndStoreUserData(SignUpDTO userRegistrationDTO) {
+//    	  userObj = userRegistrationDTO;
+//    	  String otp = generateOTP();
+//    	  sendOTPEmail(userRegistrationDTO.getEmail(), otp);
+//    	  otpMap.put(userRegistrationDTO.getEmail(), otp)
+//    	 }
+//    
+	   @Override
+    public boolean verifyOTP(OTPVerificationDTO otpVerificationDTO) {
+		  // System.out.println("verify otp"+otpVerificationDTO.getOtp()+"and email is"+otpVerificationDTO.getEmail());
+    	  OTP storedOTP = otprepository.findByEmail(otpVerificationDTO.getEmail());
+    	  System.out.println("in service=====>"+storedOTP.getOtp()+ storedOTP.getEmail());
+    	  
+    	if(storedOTP != null && storedOTP.getOtp().equals(otpVerificationDTO.getOtp())) {
+    		
+      	  return true;
+
+    	}
+    	  return false;
+    	 }
+    
+//	   private boolean isOTPValid(OTP otp) {
+//		    if (otp != null) {
+//		        // Get the creation time of the OTP
+//		        LocalDateTime otpCreationTime = otp.getCreationTime(); // Assuming you have a field for OTP creation time
+//
+//		        // Define the validity duration for the OTP (e.g., 5 minutes)
+//		        Duration validityDuration = Duration.ofMinutes(5); // Adjust as needed
+//
+//		        // Calculate the expiration time for the OTP
+//		        LocalDateTime otpExpirationTime = otpCreationTime.plus(validityDuration);
+//
+//		        // Get the current time
+//		        LocalDateTime currentTime = LocalDateTime.now();
+//
+//		        // Compare the current time with the OTP expiration time
+//		        if (currentTime.isBefore(otpExpirationTime)) {
+//		            // OTP is still valid
+//		            return true;
+//		        }
+//		    }
+//		    return false;
+//		}
+
+	   
+    private String generateOTP() {
+    	  int otpLength = 6;
+    	  String numbers = "0123456789";
+    	  StringBuilder otp = new StringBuilder();
+
+    	  for (int i = 0; i < otpLength; i++) {
+    	   int index = (int) (Math.random() * numbers.length());
+    	   otp.append(numbers.charAt(index));
+    	  }
+
+    	  return otp.toString();
+    	 }
+    
+    
+	private void sendOTPEmail(String email, String otp) {
+		  MimeMessage message = javaMailSender.createMimeMessage();
+
+		  try {
+		   MimeMessageHelper helper = new MimeMessageHelper(message, true);
+		   helper.setTo(email);
+		   helper.setSubject("OTP Verification");
+		   helper.setText("Your OTP for registration is: " + otp);
+		   javaMailSender.send(message);
+		  } catch (MessagingException e) {
+		   // Handle exception
+		  }
+		 }
+		 
+	
+	
+	
+	
+	User cust=new User();
+
+//	@Override
+//	public void getOtpForForgotPass(String emailId) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+	
+	@Override
+	public void getOtpForForgotPass(String emailId) {
+		OTP dbotp=new OTP();
+		User cust=dao.findByEmail(emailId);
+		System.out.println("-------"+cust.toString());
+		   userObj.setEmail(emailId);
+		  if(cust.getEmail()!=null)
+		  {
+		   String otp = generateOTP();
+		   sendOTPEmail(emailId, otp);
+		   otpobj.setEmail(emailId);
+		   otpobj.setOtp(otp);
+		   dbotp.setOtp(otp);
+		   dbotp.setEmail(emailId);
+		  // dao.saveAll(dbotp);
+		   otprepository.save(dbotp);
+		  }
+		  else if(cust.getEmail()==null && cust !=null)
+		   throw new ResourceNotFoundException("User Does not exist from userServiceImpl Class"); 
+		  
+		
+	}
+//	@Override
+//	 public SignUpResponseDTO storeUserDataWithNewPass(EditPassDTO newPass) {
+//		User cust=dao.findByEmail(userObj.getEmail());
+//if(cust != null)
+//{
+//	 cust.setPassword(newPass.getPassword());
+//	  User persistentUser = dao.save(cust);
+//	  return mapper.map(persistentUser, SignUpResponseDTO.class);
+//
+//
+//}else {
+//	throw new ResourceNotFoundException("user doesnt exir");
+//}
+//	 
+//	    
+//	 }
+
+//	@Override
+//	public boolean changePassword(ChangePasswordDTO changePasswordDTO) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+
+	@Override
+	public String changePassword(ChangePasswordDTO changepassdto) {
+	//	Optional<User> cust=dao.findById(changepassdto.getId());
+	
+		System.out.println(changepassdto.toString());
+		User cust=dao.findById(changepassdto.getId()).orElseThrow();
+		System.out.println(cust.toString());
+		if(cust.getPassword().equals(changepassdto.getOldpassword()))
+		{
+			cust.setPassword(changepassdto.getNewpaasword());
+			dao.save(cust);
+			return "password changed successfully";
+			
+		}
+		else
+		{
+			
+			return ("password does not match");
+			
+		}
+		
+		
+	}
+
+	@Override
+	public boolean forgotchangePassword(EditPassDTO changePasswordDTO) {
+
+		User user = dao.findByEmail(changePasswordDTO.getEmail());
+
+        if (user != null && user.getPassword().equals(changePasswordDTO.getOldPassword())) {
+            user.setPassword(changePasswordDTO.getNewPassword());
+            dao.save(user);
+            return true;
+        }
+
+        return false;
+	}
+
+	
+
+}

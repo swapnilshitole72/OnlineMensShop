@@ -1,7 +1,5 @@
 package com.shopx.controller;
 
-import java.io.Console;
-
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
@@ -15,17 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopx.dto.CustomerResponseDTO;
+import com.shopx.dto.EditCustomerDTO;
+import com.shopx.dto.EditPassDTO;
+import com.shopx.dto.EditPasswordDTO;
+import com.shopx.dto.ForgetPassOtpDTO;
 import com.shopx.dto.LoginDTO;
+import com.shopx.dto.OTPVerificationDTO;
 import com.shopx.dto.SignUpDTO;
 import com.shopx.entities.User;
 //import com.shopx.service.CustomerService;
 import com.shopx.service.CustomerService;
-
-import lombok.val;
 
 @RestController
 @RequestMapping("/customer")
@@ -66,10 +66,16 @@ public class CustomerController {
 		return ResponseEntity.status(HttpStatus.OK).body(customerService.loginValidationForm(login));
 	}
 	
-	@PutMapping
-	public ResponseEntity<?> editCustomerProfil(@RequestBody SignUpDTO customer)
+	@PutMapping("/update")
+	public ResponseEntity<?> editCustomerProfil(@RequestBody EditCustomerDTO customer)
 	{
-		return ResponseEntity.status(HttpStatus.OK).body(customer);
+		return ResponseEntity.status(HttpStatus.OK).body(customerService.editCustomerProfil(customer));
+	}
+	
+	@PutMapping("/password")
+	public ResponseEntity<?> changePassword(@RequestBody EditPasswordDTO password)
+	{
+		return ResponseEntity.status(HttpStatus.OK).body(customerService.editCustomerPassword(password));
 	}
 
 	
@@ -79,6 +85,51 @@ public class CustomerController {
 		return customerService.addAddress(userId, address);
 	}
 	
+	 @PostMapping("/getotpforforgotpass")
+	 public ResponseEntity<String> getOtpForForgotPass(@RequestBody ForgetPassOtpDTO emailId) {
+	      String email=emailId.getEmail();
+	       customerService.getOtpForForgotPass(email);
+	        return ResponseEntity.ok("OTP sent for verification.");
+	    }
+	
+	
+	    @PostMapping("/verifyotpforforgot")
+	    public ResponseEntity<?> verifyOTPForForgotPass(@RequestBody OTPVerificationDTO otpVerificationDTO) {
+	    	
+	        boolean isVerified = customerService.verifyOTP(otpVerificationDTO);
+ 	    	
+	    	try {
+
+		        if (isVerified) {
+			         
+		            return ResponseEntity.ok("OTP Verification is Successful");
+		        } else {
+		            return ResponseEntity.badRequest().body("OTP verification failed.");
+		        }
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error occured during OTP verififcation");
+				// TODO: handle exception
+			}
+//	        isVerified1=isVerified;
+	    
+	      
+	    }
+	    
+	       boolean isVerified1;
+
+	 
+	    @PostMapping("/storenewpass")
+	    public ResponseEntity<?> storeNewPass(@RequestBody EditPassDTO editpassword) {
+	    	 boolean isPasswordChanged = customerService.forgotchangePassword(editpassword);
+
+	         if (isPasswordChanged) {
+	             return ResponseEntity.ok("Password changed successfully");
+	         } else {
+	             return ResponseEntity.badRequest().body("Password change failed");
+	         }
+	     }
 	
 
 }

@@ -14,6 +14,7 @@ import lombok.ToString;
 @ToString
 public class SignUpDTO {
 	
+
 	@NotBlank
 	private String firstName;
 	@NotBlank

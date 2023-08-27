@@ -1,0 +1,116 @@
+package com.shopx.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.shopx.custom_exception.ResourceNotFoundException;
+import com.shopx.dao.CustomerDao;
+import com.shopx.dto.CustomerResponseDTO;
+import com.shopx.dto.EditCustomerDTO;
+import com.shopx.dto.EditPasswordDTO;
+import com.shopx.dto.LoginDTO;
+import com.shopx.dto.SignUpDTO;
+import com.shopx.entities.ShoppingCart;
+import com.shopx.entities.User;
+
+@Service
+@Transactional
+public class CustomerServiceImpl implements CustomerService {
+	
+	@Autowired
+	private CustomerDao dao;
+	
+	@Autowired
+	private ModelMapper mapper;
+	
+	
+	//Registration or creating new customer
+	@Override
+	public User newCustomerRegistration(SignUpDTO newCustomer) {
+		
+		User cust = mapper.map(newCustomer, User.class);
+//		
+//		cust.setMyCart(newCart);
+//		
+		User customer = dao.save(cust);	
+//		createUserCart(customer);
+		return customer;
+	}
+
+	//Finding all customer details
+	@Override
+	public List<User> getAllCustomerDetails() {
+		
+		List<User> cust = dao.findAll();
+		List<CustomerResponseDTO> dto = new ArrayList<CustomerResponseDTO>();
+		for (User user : cust) {
+			CustomerResponseDTO c = mapper.map(user, CustomerResponseDTO.class);			
+			dto.add(c);
+		}
+
+		return  cust;
+	}
+
+	@Override
+	public User getCustomerById(Long id) {
+		
+		return dao.findById(id).orElseThrow(()->new NoSuchElementException("Invalid Customer Id"));
+	}
+
+	@Override
+	public User loginValidationForm(LoginDTO login) {
+		return dao.findByEmailAndPassword(login.getEmail(), login.getPassword()).
+				orElseThrow(() -> new ResourceNotFoundException("Invalid Credentials , User not found!!"));
+	}
+	
+	
+	private void createUserCart(User user) {
+		ShoppingCart newCart = new ShoppingCart();
+		
+		user.addCart(newCart);
+//		dao.saveAndFlush(user);
+//		System.out.println("new cart created for user " + user.getFirstName());
+	}
+
+	@Override
+	public User editCustomerProfil(EditCustomerDTO editCustomer) {
+		
+		User user = getCustomerById(editCustomer.getId());
+//		if(user!=null)
+		
+		User cust = mapper.map(editCustomer, User.class);
+		cust.setPassword(user.getPassword());
+		return dao.save(cust);
+		
+		
+	}
+
+	@Override
+	public User addAddress(Long userId, String address) {
+		
+		User user = dao.findById(userId).orElseThrow();
+		user.setAddress(address);
+		dao.save(user);
+		return dao.save(user);
+	}
+
+	@Override
+	public String editCustomerPassword(EditPasswordDTO pass) {
+		
+		User cust = getCustomerById(pass.getId());
+		if(cust.getPassword().equals(pass.getOldpassword()))
+		{
+			cust.setPassword(pass.getNewpaasword());
+			return "Password changed successfully";
+		}
+		return "Invalid email or old password";
+	}
+
+}

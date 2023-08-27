@@ -9,11 +9,13 @@ public interface OrderService {
 	
 	public List<Order> getAllOrders();
 	
-	public Order getOrderByCustomerId(Long custId);
+	public List<Order> getOrderByCustomerId(Long custId);
 	
 	public Order addNewOrderItem(OrderRequestDTO order);
 	
 	public String deleteOrder(Long orderId);
 	
 	public Order getOrderByOrderId(Long orderId);
+	
+	
 }
