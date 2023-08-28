@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,9 +53,10 @@ public class CustomerServiceImpl implements CustomerService {
 	public User newCustomerRegistration(SignUpDTO newCustomer) {
 		
 		User cust = mapper.map(newCustomer, User.class);
-//		
-//		cust.setMyCart(newCart);
-//		
+		BCryptPasswordEncoder bcrypt= new BCryptPasswordEncoder();
+	String encoderpass=	bcrypt.encode(newCustomer.getPassword());
+	
+	cust.setPassword(encoderpass);
 		User customer = dao.save(cust);	
 //		createUserCart(customer);
 		return customer;
@@ -82,10 +84,21 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public User loginValidationForm(LoginDTO login) {
-		return dao.findByEmailAndPassword(login.getEmail(), login.getPassword()).
-				orElseThrow(() -> new ResourceNotFoundException("Invalid Credentials , User not found!!"));
+		User cust=dao.findByEmail(login.getEmail());
+
+		BCryptPasswordEncoder bcrypt= new BCryptPasswordEncoder();
+		if (bcrypt.matches(login.getPassword(),cust.getPassword())) {
+			System.out.println("password matched");
+			
+			return cust;
+		}else {
+			System.out.println("password not macthes");
+		 throw  new ResourceNotFoundException("password does not matched ");
+		}
+		
+//		return dao.findByEmailAndPassword(login.getEmail(), login.getPassword()).
+//				orElseThrow(() -> new ResourceNotFoundException("Invalid Credentials , User not found!!"));
 	}
-	
 	
 	private void createUserCart(User user) {
 		ShoppingCart newCart = new ShoppingCart();
@@ -119,11 +132,14 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public String editCustomerPassword(EditPasswordDTO pass) {
-		
+		BCryptPasswordEncoder bcrypt= new BCryptPasswordEncoder();
 		User cust = getCustomerById(pass.getId());
-		if(cust.getPassword().equals(pass.getOldpassword()))
+		
+		
+		if(		bcrypt.matches(pass.getOldpassword(), cust.getPassword()))
 		{
-			cust.setPassword(pass.getNewpaasword());
+			
+			cust.setPassword(bcrypt.encode(pass.getNewpaasword()));
 			return "Password changed successfully";
 		}
 		return "Invalid email or old password";
@@ -265,22 +281,23 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public String changePassword(ChangePasswordDTO changepassdto) {
-	//	Optional<User> cust=dao.findById(changepassdto.getId());
-	
-		System.out.println(changepassdto.toString());
+		BCryptPasswordEncoder bcrypt= new BCryptPasswordEncoder();
+
 		User cust=dao.findById(changepassdto.getId()).orElseThrow();
-		System.out.println(cust.toString());
-		if(cust.getPassword().equals(changepassdto.getOldpassword()))
-		{
-			cust.setPassword(changepassdto.getNewpaasword());
+		
+		if(bcrypt.matches(changepassdto.getOldpassword(),cust.getPassword())) {
+			
+			String newpassword=bcrypt.encode(changepassdto.getNewpaasword());
+			cust.setPassword(newpassword);
 			dao.save(cust);
 			return "password changed successfully";
-			
 		}
+		
+		
 		else
 		{
 			
-			return ("password does not match");
+			return ("oldpassword does not match");
 			
 		}
 		
@@ -289,18 +306,22 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public boolean forgotchangePassword(EditPassDTO changePasswordDTO) {
+		BCryptPasswordEncoder bcrypt= new BCryptPasswordEncoder();
 
 		User user = dao.findByEmail(changePasswordDTO.getEmail());
 
         if (user != null && user.getEmail().equals(changePasswordDTO.getEmail())) {
-            user.setPassword(changePasswordDTO.getNewPassword());
+        String newpass=	bcrypt.encode(changePasswordDTO.getNewPassword());
+            user.setPassword(newpass);
             dao.save(user);
             return true;
         }
+        else {
+        	throw new ResourceNotFoundException("plz enter valid email");
+        }
 
-        return false;
+       
 	}
-
 	
 
 }

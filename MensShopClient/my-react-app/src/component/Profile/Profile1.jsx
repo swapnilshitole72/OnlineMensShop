@@ -86,7 +86,7 @@ export default function Profile1() {
 
     return (
         <>
-                <ProfilePage firstName={firstName} top={"90px"}></ProfilePage>
+                <ProfilePage firstName={firstName} top={"-90px"}></ProfilePage>
             
             <div className="container1">
                 <div className="welcomComponentMain">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import userService from '../Services/user.service';
+import SearchComponent from './SearchComponent';
 
 
 
@@ -8,9 +9,6 @@ export default function Navbar() {
     const location = useLocation();
     const history = useHistory();
     const [data, setData] = useState([]);
-    const [dataa, setDataa] = useState([]);
-    const [filter, setFilter] = useState(data);
-    const [searchQuery, setSearchQuery] = useState('');
     const [showLink, setShowLink] = useState(false);
     const [showRole, setShowRole] = useState(false);
     const userRole = () => {
@@ -23,42 +21,12 @@ export default function Navbar() {
         }
       };
 
-      const handleSearchInputChange = (e) => {
-        const query = e.target.value;
-        setSearchQuery(query);
-            debugger
-        filterProducts(query);
-           
-         };
-       
-         const filterProducts = (query) => {
-           if (query.trim() === '') {
-               setFilter(data);
-             debugger
-           } else {
-             const filteredProducts = dataa.filter((data) =>
-               data.productName.toLowerCase().includes(query.toLowerCase())
-             );
-             setFilter(filteredProducts);
-           }
-         };
-   
+     
 
-         const init = () => {
-            userService
-                .getAllProducts()
-                .then((response) => {
-                    setData(response.data);
-                    debugger
-                })
-                .catch((error) => {
-                    console.log('Something went wrong', error);
-                });
-        };
+         
 
 
     useEffect(() => {
-        init();
         setShowLink(sessionStorage.getItem('IsUserLoggedIn'));
         setShowRole(userRole);
     }, [])
@@ -125,7 +93,7 @@ export default function Navbar() {
                                 </li>
                                 <div className="container-fluid">
                                     <form className="d-flex" role="search">
-                                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"  value={searchQuery} onChange={handleSearchInputChange}/>
+                                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                                         <button className="btn btn-outline-success" type="submit">Search</button>
                                     </form>
                                 </div>
@@ -171,7 +139,7 @@ export default function Navbar() {
 
                                 )}
 
-                                <a href='' className='btn btn-outline-light ms-2 '>
+                                <a href='shoppingcart' className='btn btn-outline-light ms-2 '>
                                     <i className='fa fa-shopping-cart me-1'></i>
                                     <b>  Cart(0)</b>
                                 </a>

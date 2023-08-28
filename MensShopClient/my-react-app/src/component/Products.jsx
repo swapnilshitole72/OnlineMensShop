@@ -8,6 +8,13 @@ import ProductImage from './Products/ProductImage';
 export default function Products() {
     const [data, setData] = useState([]);
     const [loading, setloading] = useState(false);
+    const [filter, setFilter] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
+    const query=sessionStorage.getItem('query');
+
+    
+    
+
 
     const productHandler=(category)=>{
         debugger
@@ -48,7 +55,7 @@ export default function Products() {
     const ShowProducts = () => {
         return (
             <>
-                <div className='buttons  d-flex justify-content-center '>
+                <div className='buttons  d-flex justify-content-center' style={{marginTop:"-00px"}}>
 
                     <button className='btn btn-outline-dark me-2' onClick={()=>init()} > All</button>
                     <button className='btn btn-outline-dark me-2' onClick={()=>productHandler('SHIRT')}>Top Wear </button>  {/* onClick={()=>filterProducts("Top Wear")} */}
@@ -92,7 +99,7 @@ export default function Products() {
 
     return (
 
-        <div>
+        <div style={{marginTop:"-98px"}}>
             <div className='container my-5 py-5 top-margin'>
                 <div className='row'>
                     <div className='col-12 mb-5'>

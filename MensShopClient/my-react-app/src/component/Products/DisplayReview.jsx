@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react'
 import userService from '../../Services/user.service';
+import StarRating from './StarRating';
 
 
 const Review = ({ id }) => {
@@ -49,11 +50,12 @@ const Review = ({ id }) => {
     <div
     className="card"
     style={cardStyle}
-    onMouseEnter={() => setIsHovered(true)}
+    onMouseEnter={() => setIsHovered(false)}
     onMouseLeave={() => setIsHovered(false)}
   >
     <div className="card-body">
-      <h1 className="card-title" style={{ color: 'orange' }}>Product Review</h1>
+      <h1 className="card-title" style={{ color: 'black' }}>Product Review</h1>
+      <hr></hr>
       <div className="row d-flex py-" style={{ display: 'flex', flexDirection: 'column' }}>
         {review.map((reviews, index) => (
           <div className='py-3' style={{ display: 'flex', flexDirection: 'column' }} key={index}>
@@ -62,7 +64,8 @@ const Review = ({ id }) => {
                 {reviews.customer.firstName}
               </h6>
               <h5 style={{ color: '' }}>
-                {reviews.rating} ⭐
+                <StarRating rating={reviews.rating}></StarRating>
+                {/* {reviews.rating} ⭐ */}
               </h5>
               <p className="card-text display-" style={{ color: 'green' }}>
                 {reviews.reviewText}

@@ -93,10 +93,14 @@ import httpClient from '../http-common';
   const addReview=(Review)=>{
     return httpClient.post('review',Review);
   }
+
+  const getRating=(id)=>{
+    return httpClient.get(`review/rating/${id}`)
+  };
   // const get = (id) => {
   //   return httpClient.get(`${id}`);
   // };
 
 export default { create ,login, get, setAddress, getAll, updateCustomer, setPassward, getAllProducts, getProduct, setImage, 
   Addproducts, getByCategory, remove, getImage, getOrderByCustId, setOrder, setPayment,
-  adddchangedpass, verifyOTP, createOTP, getAllPayments, getAllReview, addReview};
+  adddchangedpass, verifyOTP, createOTP, getAllPayments, getAllReview, addReview, getRating};

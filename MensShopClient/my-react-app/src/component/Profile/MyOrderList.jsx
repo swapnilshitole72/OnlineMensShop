@@ -40,10 +40,10 @@ function MyOrder() {
       <ProfilePage></ProfilePage>
       <center>
 
-        <div class="table-responsive container" style={{ marginTop: "100px" }}>
+        <div class="table-responsive container" style={{ marginTop: "-20px" }}>
           <h2 className='text-center'>My Orders</h2><br />
 
-          <table class="table table-hover" style={{ marginTop: "50px", marginLeft: "200px" }}>
+          <table class="table table-hover" style={{ marginTop: "0px", marginLeft: "200px" }}>
             <thead>
               <tr>
                 <th>Order Id</th>

@@ -11,7 +11,7 @@ const ForgotPassword = () => {
    const [otp, setOtp] = useState('');
 
 
-                                                                                           ///////for OTP////////////////////////
+ ///////for OTP////////////////////////
 
   const sendOTP = (p) => {
 debugger
@@ -85,7 +85,7 @@ const verifyotpobj={
 
   return (
     <div className="container-fluid bg-light min-vh-100 d-flex align-items-center justify-content-center">
-    <div className="card shadow p-4" style={{ width: '400px' }}>
+    <div className="card shadow p-4" style={{ width: '400px' ,marginTop:"-400px"}}>
       <div className="card-body">
         <h4 className="card-title">Forgot Password</h4>
         <form>

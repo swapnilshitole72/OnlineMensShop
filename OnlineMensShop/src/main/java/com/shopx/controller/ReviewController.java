@@ -37,7 +37,7 @@ public class ReviewController extends BaseEntity{
 	
 
 	//Avgerage rating by each individual product by id
-	@GetMapping("/rating{productId}")
+	@GetMapping("/rating/{productId}")
 	public ResponseEntity<?> getAvgProductRatingById(@PathVariable Long productId)
 	{
 		return ResponseEntity.status(HttpStatus.OK).body(reviewService.getAvgProductRatingById(productId));

@@ -32,13 +32,19 @@ import ProductList from './Admin/ProductList';
 import AddImage from './Admin/AddImage';
 import PaymentList from './Admin/PaymentList';
 import ProductReview from './component/Products/AddReview';
+import SearchComponent from './component/SearchComponent';
+import ShoppingCart from './component/Products/ShowCart';
 
 function App() {
   return (
     <>
+
       <header>
+
         <Navbar></Navbar>
       </header>
+      <SearchComponent></SearchComponent>
+
       <Switch>
         {/* <Route exact path="/" component={Home} /> */}
         <Route path="/home" component={Home} />
@@ -59,8 +65,8 @@ function App() {
         <ProtectedRoute exact path="/changePassword" component={ChangePassword} />
         <ProtectedRoute exact path="/myorder" component={MyOrder} />
         <ProtectedRoute exact path="/productReview/:id" component={ProductReview}/>
-        {/* <ProtectedRoute exact path="/" component={Home} /> */}
-
+        <ProtectedRoute exact path="/shoppingcart/:id" component={ShoppingCart}/>
+        
 
 
         <ProtectedAdminRoute exact path="/imageUpload" component={FileUploadComponent} />
@@ -79,7 +85,6 @@ function App() {
         {/* <Route exact path="/" component={Home} /> */}
 
       </Switch>
-    {/* <AddImage></AddImage> */}
 
       <footer>
         <Footer></Footer>

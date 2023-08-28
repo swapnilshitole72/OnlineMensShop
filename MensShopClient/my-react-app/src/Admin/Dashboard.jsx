@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -21,11 +21,13 @@ function Dashboard() {
     const handlePayment=()=>{
         history.push('/paymentList');
     };
+
+    
   
     return (
 
     <center>
-        {/* <PaymentActivityChart></PaymentActivityChart> */}
+        {/* <PaymentActivityChart>< /PaymentActivityChart> */}
     <div className="container  mt-5"  >
 
                 <h1 style={{marginTop:'100px',color:'blue'}}>Welcome </h1>

@@ -22,8 +22,8 @@ function ProductImage(props) {
   }, []);
 
   return (
-    <div>
-      {imageData && <img src={imageData} class="card-img-top" alt={''} height={height} width={width}/>}
+    <div >
+      {imageData && <img src={imageData} class="card-img-top" alt={''} height={height} width={width} />}
     </div>
   );
 }
