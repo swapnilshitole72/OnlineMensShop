@@ -4,12 +4,12 @@ import React from 'react';
 
 function AboutUs() {
   return (
-    <div className="about-us container" style={{marginTop:"200px"}}>
+    <div className="about-us container" style={{marginTop:"00px"}}>
       <div className="row text-center">
       <div className="col-xs-12 col-md-6">
         <div >
           <img
-            src="/assets/aboutus.png"
+            src="/assets/aboutus.jpg"
             alt=""
             className="img-fluid"
             style={{height:"400px"}}

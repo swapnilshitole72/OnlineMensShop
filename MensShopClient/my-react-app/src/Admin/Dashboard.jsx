@@ -30,10 +30,10 @@ function Dashboard() {
         {/* <PaymentActivityChart>< /PaymentActivityChart> */}
     <div className="container  mt-5"  >
 
-                <h1 style={{marginTop:'100px',color:'blue'}}>Welcome </h1>
+                <h1 style={{marginTop:'00px',color:'blue'}}>Welcome </h1>
       <h2>{sessionStorage.getItem('userName')}</h2>
 
-      <div className="row" style={{marginTop:'50px',marginLeft:'150px'}}>
+      <div className="row" style={{marginTop:'0px',marginLeft:'150px'}}>
 
 
         <div className="col-md-5 mb-5">

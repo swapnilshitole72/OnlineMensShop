@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import userService from '../Services/user.service';
 import ProductImage from './Products/ProductImage';
+import './BackgroundDiv.css';
 
 
 export default function Products() {
@@ -55,13 +56,13 @@ export default function Products() {
     const ShowProducts = () => {
         return (
             <>
-                <div className='buttons  d-flex justify-content-center' style={{marginTop:"-00px"}}>
+                <div className='buttons  d-flex justify-content-center ' style={{marginTop:"-00px"}}>
 
                     <button className='btn btn-outline-dark me-2' onClick={()=>init()} > All</button>
                     <button className='btn btn-outline-dark me-2' onClick={()=>productHandler('SHIRT')}>Top Wear </button>  {/* onClick={()=>filterProducts("Top Wear")} */}
                     <button className='btn btn-outline-dark me-2' onClick={()=>productHandler('PANT')}>Buttom Wear</button> {/*onClick={()=>filterProducts("Buttom Wear")}*/}
-                    <button className='btn btn-outline-dark me-2' onClick={()=>productHandler('FESTIVAL')}>Festival Wear</button> {/*onClick={()=>filterProducts("Festival Wear")}*/}
-                    <button className='btn btn-outline-dark me-2'onClick={()=>productHandler('TROUSER')}>Casual</button>         {/* onClick={()=>filterProducts("Casual")} */}
+                    <button className='btn btn-outline-dark me-2' onClick={()=>productHandler('FOOTWARE')}>Foot Wear</button> {/*onClick={()=>filterProducts("Festival Wear")}*/}
+                    <button className='btn btn-outline-dark me-2'onClick={()=>productHandler('WATCHES')}>Watches</button>         {/* onClick={()=>filterProducts("Casual")} */}
                 </div>
                 <div>
                     <br></br>
@@ -71,7 +72,8 @@ export default function Products() {
 
                     return (
                         <>
-                            <div className='col-md-3 mb-4 h-100' >
+                        {/* <div className='background-div'> */}
+                            <div className='col-md-3 mb-4 h-100 ' >
                                 <div class="card h-100 text-center p-5" key={Products.id}  >
 
                                     <ProductImage prodId={Products.id} height={250} />
@@ -99,8 +101,8 @@ export default function Products() {
 
     return (
 
-        <div style={{marginTop:"-98px"}}>
-            <div className='container my-5 py-5 top-margin'>
+        <div style={{marginTop:"-98px"}} >
+            <div className='container my-5 py-5 top-margin '>
                 <div className='row'>
                     <div className='col-12 mb-5'>
                         <h1 className='display-6 fw-bolder text-center'> Latest Products</h1>

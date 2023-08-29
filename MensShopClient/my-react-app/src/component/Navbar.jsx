@@ -107,7 +107,7 @@ export default function Navbar() {
 
                                 {showLink ? (
                                     <div class="btn-group" >
-                                        <button className="btn btn-outline-light dropdown-toggle text-light " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button className="btn btn-outline-light   dropdown-toggle  " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <b>
                                                 <i className='fa fa-user me-1'></i>
                                                 {sessionStorage.getItem('userName')}</b>
@@ -115,13 +115,15 @@ export default function Navbar() {
                                         <ul class="dropdown-menu">
                                             <li><a className="dropdown-item" href="profile">My Profile</a></li>
                                             <li><a className="dropdown-item" href="editProfile">Edit Profile</a></li>
-                                            <li><a className="dropdown-item" href="myorder">My orders</a></li>
+                                            
+                                            {showRole?(
+                                            <li><a className="dropdown-item" href="myorder">My orders</a></li>):(<></>)}
                                             <li><a className="dropdown-item" href="/" onClick={() => logoutUser()}>Logout</a></li>
 
                                         </ul>
                                     </div>)
                                     : (
-                                        <a href='/login' className='btn btn-outline-light text-light'>
+                                        <a href='/login' className='btn btn-outline-light '>
                                             <b> <i className='fa fa-sign-in me-1'></i>
                                                 Login</b>
                                         </a>

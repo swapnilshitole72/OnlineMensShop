@@ -67,24 +67,28 @@ export default function ({ addToCart }) {
         return (
             <>
             <div style={{marginTop:"-100px"}}></div>
-                <div className='col-md-6' style={{marginTop:"-200px"}}>
-                    <ProductImage prodId={id} height={400} width={400} />
+                <div className='col-md-6' style={{marginTop:"-100px"}}>
+                    <ProductImage prodId={id} height={400} width={100} />
                 </div>
-                <div className='col-md-6' style={{marginTop:"-200px"}}>
+                <div className='col-md-6' style={{marginTop:"-100px"}}>
                     <h4 className='text-uppercase text-black-50'>
                         {data.productName}
                     </h4>
                     <h1 className='display-5'>
                         {product.title}
                     </h1>
+                    <b>Rating:</b> 
+
                     <p className='lead fw-bolder'>
                         
                         <StarRating rating={ratingP}></StarRating>
                        
                     </p>
+                    
                     <h3 className='display-6 fw-bold my-4'>
-                        ₹{data.price}
+                        <span><h5>Price:</h5> </span>₹{data.price}.00
                     </h3>
+                    <b>Description:</b> 
                     <p className='lead'>{data.description}</p>
                     {/* <button className='btn btn-outline-dark px-4 py-2' onClick={addToCartHandler} > Add to Cart</button> */}
                     <NavLink to={`/shoppingcart/${data.id}`} className="btn btn-outline-dark">Add Cart</NavLink>

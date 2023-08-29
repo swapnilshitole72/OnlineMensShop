@@ -34,6 +34,7 @@ import PaymentList from './Admin/PaymentList';
 import ProductReview from './component/Products/AddReview';
 import SearchComponent from './component/SearchComponent';
 import ShoppingCart from './component/Products/ShowCart';
+import NotFound from './NotFound';
 
 function App() {
   return (
@@ -43,10 +44,10 @@ function App() {
 
         <Navbar></Navbar>
       </header>
+      
       <SearchComponent></SearchComponent>
 
       <Switch>
-        {/* <Route exact path="/" component={Home} /> */}
         <Route path="/home" component={Home} />
         <Route path="/products" component={Products} />
         <Route path="/login" component={Login} />
@@ -56,6 +57,7 @@ function App() {
         <Route path="/contactUs" component={ContactUs} />
         <Route path="/product/:id" component={product} />
         <Route path="/forgotpass" component={ForgotPassword} />
+        <HomePageRoute exact path="/" component={Home}/>
         
 
         <ProtectedRoute exact path="/address" component={Address} />
@@ -79,10 +81,9 @@ function App() {
         <ProtectedAdminRoute exact path="/paymentList" component={PaymentList} />
         
         
-        {/* <ProtectedAdminRoute exact path="/" component={Home} /> */}
 
-        <HomePageRoute exact path="/" component={Home}/>
-        {/* <Route exact path="/" component={Home} /> */}
+
+        <Route path="*" component={NotFound} />
 
       </Switch>
 

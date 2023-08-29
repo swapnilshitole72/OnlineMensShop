@@ -4,6 +4,23 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 function ProfilePage(props) {
   const {firstName,top}=props;
   const history=useHistory();
+  
+
+  const userRole = () => {
+    const role=sessionStorage.getItem('userRole');
+
+    if (role=='ROLE_CUSTOMER') {
+      return true;
+    } else if (role=='ROLE_ADMIN'){
+      return false;
+    }
+  };
+
+  const check=userRole();
+//   useEffect(() => {
+   
+// }, [])
+
 
   const logoutUser = () => {
     sessionStorage.removeItem('userId');
@@ -39,7 +56,12 @@ function ProfilePage(props) {
 <br></br>
 <h5><a class="dropdown-item" href="changePassword">Change Password</a></h5>
 <br></br>
+{check?(
 <h5><a class="dropdown-item" href="myorder">My Orders</a></h5>
+
+):(
+  <></>
+)}
 <br></br>
 <h5><a class="dropdown-item" href='/' onClick={logoutUser}>Log Out</a></h5>  
 

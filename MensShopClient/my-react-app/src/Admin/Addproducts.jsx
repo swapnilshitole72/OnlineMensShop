@@ -102,8 +102,10 @@ export default function Addproducts() {
                         <option disabled>Choose...</option>
                         <option value="SHIRT">SHIRT</option>
                         <option value="PANT">PANT</option>
-                        <option value="T_SHIIRT">T_SHIRT</option>
                         <option value="TROUSER">TROUSER</option>
+                        <option value="FOOTWARE">FOOTWARE</option>
+                        <option value="WATCHES">WATCHES</option>
+
                       </select>
                     </div>
                   </div>

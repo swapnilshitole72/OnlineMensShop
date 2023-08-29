@@ -172,12 +172,9 @@ export default function AddUser() {
                        <small >Already a user? <span><a href='/login'>Log In</a></span></small>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
               <h6 onClick={()=>resetPage()} className='btn btn-outline-secondary' >Reset</h6>
 
-                       <br />
-                       <br />
-
                        <div className="container d-flex justify-content-center align-items-center">
 
-                        <br></br>
+                        
                        <input type='submit' onClick={(e)=>saveUser(e)} className='btn btn-dark btn-lg' value={'SignUp'}/> 
                        
                         </div>

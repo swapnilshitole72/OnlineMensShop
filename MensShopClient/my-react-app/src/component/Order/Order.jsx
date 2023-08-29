@@ -65,6 +65,12 @@ function StyledDiv() {
     };
 
     const paymentHandler=(e)=>{
+        if(orderId==null || orderId==''|| orderId==null || orderId==0){
+
+    alert('Please make sure you confirmed your Order')
+
+        }
+        else{
         e.preventDefault();
         const payment = {
             amountPaid,
@@ -79,12 +85,13 @@ function StyledDiv() {
             .then((orderDone) => {
                 // setAmountPaid(orderDone.data)
                 console.log(orderDone);
-
+                alert(sessionStorage.getItem('userName')+" your payment is successfully done..happy shopping");
                 history.push('/products')
             })
             .catch((error) => {
                 console.log('Something went wrong', error);
             });
+        }
     }
 
     const confirmOrder = (e) => {
@@ -106,6 +113,9 @@ function StyledDiv() {
             .catch((error) => {
                 console.log('Something went wrong', error);
             });
+            alert(sessionStorage.getItem('userName')+" your order is confirmed please make payment")
+
+        
     };
 
     const handleOrder = () => {
@@ -257,9 +267,10 @@ function StyledDiv() {
                                                             UPI
                                                         </label>
                                                     </div>
-                                                    <button type="submit" className="btn btn-success mt-3" onClick={paymentHandler}>
+                                                    {orderId!=null ?(
+                                                    <button type="submit" className="btn btn-success mt-3 " onClick={paymentHandler}>
                                                         Proceed to Payment
-                                                    </button>
+                                                    </button>):(<></>)}
                                                 </form>
                                             </div>
                                         </div>
@@ -268,6 +279,7 @@ function StyledDiv() {
                             </div>
                         </div>
                     </div>
+                   
                     <div className="button-container">
                         <button className="btn btn-secondary" onClick={cancelOrder}>Cancel Payment</button>
                     </div>

@@ -9,6 +9,8 @@ const SearchComponent = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [show, setShow] = useState(true);
 
+    
+
     const handleAdmin=()=>{
         if(sessionStorage.getItem('userRole')=='ROLE_ADMIN')
         setShow(false);
@@ -67,12 +69,13 @@ const SearchComponent = () => {
 
                     return (
                         <>
-                            <div className='col-md-3 mb-4 h-100  d-flex justify-content-center' >
-                                <div class="card h-100 text-center p-5 " key={Products.id}  >
+                        <div className=' col-md-3 scroll-arrow'>
+                            <div className=' d-flex justify-content-center '>
+                                <div class="card h-10 text-center  " key={Products.id}  >
 
                                     <ProductImage prodId={Products.id} height={250} />
                                     <div class="card-body">
-                                        <h5 class="card-title mb-0  ">{Products.productName.substring(0, 18)}....</h5>
+                                        <h5 class="card-title ">{Products.productName.substring(0, 18)}....</h5>
 
                                         <p class="card-text lead fw-bold">
                                             ₹ {Products.price}</p>
@@ -81,13 +84,22 @@ const SearchComponent = () => {
                                     </div>
                                 </div>
                             </div>
+                            </div>
                         </>
                     );
                 })}
             </div>
         </div>
         ):(
-            <></>
+            <>
+            <div className='col-md-3 mb-4 h-100  d-flex justify-content-center' >
+                                <div class="text-center p-5 "   >
+
+                                    <div class="card-body">
+                                    </div>
+                                </div>
+                            </div>
+            </>
         )}
         </>
 

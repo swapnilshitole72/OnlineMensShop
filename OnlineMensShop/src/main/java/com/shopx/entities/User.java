@@ -27,7 +27,7 @@ public class User extends BaseEntity{
 	private String lastName;
 	@Column(length = 50, unique = true) 
 	private String email;
-	@Column(length = 50, nullable = false) // NOT NULL constraint
+	@Column(length = 200, nullable = false) // NOT NULL constraint
 	private String password;	
 	@Column(length = 200)
 	private String address;

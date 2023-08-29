@@ -6,12 +6,12 @@ const MyCarousel = () => {
     // Initialize the Bootstrap carousel
     const carousel = document.querySelector('#carouselBasicExample');
     new window.bootstrap.Carousel(carousel, {
-      interval: 2000, // Set the interval for automatic sliding (in milliseconds)
+      interval: 3000, // Set the interval for automatic sliding (in milliseconds)
     });
   }, []);
 
   return (
-    <div id="carouselBasicExample" className="carousel slide carousel-fade" data-bs-ride="carousel" style={{marginTop:-100}}>
+    <div id="carouselBasicExample" className="carousel slide carousel-fade" data-bs-ride="carousel" style={{marginTop:-160}}>
       <div className="carousel-indicators">
         <button type="button" data-bs-target="#carouselBasicExample" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselBasicExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -19,7 +19,7 @@ const MyCarousel = () => {
       </div>
       <div className="carousel-inner">
         <div className="carousel-item active">
-        <img src="/assets/ravi.jpg" className="card-img" alt="Background " height={850}/> 
+        <img src="/assets/back.webp" className="card-img" alt="Background " height={850}/> 
           <div className="carousel-caption d-none d-md-block">
           </div>
         </div>

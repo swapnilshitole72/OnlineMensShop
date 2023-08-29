@@ -1,0 +1,10 @@
+/* ProductList.css */
+.scroll-arrowd {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(50%);
+  font-size: 24px;
+  cursor: pointer;
+  color: #3498db;
+}
